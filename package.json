@@ -1,17 +1,21 @@
 {
-  "name": "crowd-funding",
+  "name": "purrfection",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "seed": "node seeds/seed.js"
+    "seed": "node seeds/seed.js",
+    "watch": "nodemon server.js",
+    "lint": "npx eslint **/*.js --quiet",
+    "lint-fix": "npx eslint **/*.js --quiet --fix"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
+    "@faker-js/faker": "^7.6.0",
     "bcrypt": "^5.0.0",
     "connect-session-sequelize": "^7.0.4",
     "dotenv": "^8.2.0",
@@ -24,6 +28,7 @@
   "devDependencies": {
     "eslint": "^7.12.1",
     "eslint-config-prettier": "^6.15.0",
-    "prettier": "^2.1.2"
+    "prettier": "^2.1.2",
+    "nodemon": "^2.0.20"
   }
 }

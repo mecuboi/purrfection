@@ -33,6 +33,19 @@ User.init(
       allowNull: false,
       validate: {
         len: [8],
+        isAlphanumeric: true,
+      },
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    saved_petAds_id: {
+      type: DataTypes.INTERGER,
+      allowNull: true,
+      references: {
+        model: 'pet_ads',
+        key: 'id',
       },
     },
   },
