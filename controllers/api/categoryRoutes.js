@@ -1,38 +1,73 @@
 const router = require('express').Router();
-const {Category} = require('../../models');
+const { Category, PetAds } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.post('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
+ try {
+  const categoryData = await Category.findAll({
+    include: [
+      {
+        model: PetAds,
+        attributes: [
+          'name',
+          'breed',
+          'microchip_number',
+          'age',
+          'price',
+          'description'
+            ],
+      },
+    ],
+  });
+
+  if (!categoryData) {
+    res.status(404).json({ message: 'No category found with this id!' });
+    return;
+  }
+
+ const category = categoryData.map((category) => 
+    category.get({ plain: true })
+ );
+
+
+  res.status(200).json(category)
+ } catch (err) {
+  res.status(400).json(err);
+ }
+ });
+
+router.get('/:id', async (req, res) => {
   try {
-    const newProject = await Project.create({
-      ...req.body,
-      user_id: req.session.user_id,
+    const categoryByIdData = await Category.findByPk(req.params.id, {
+      include: [  
+        {
+          model: PetAds,
+          attributes: [
+          'name', 
+          'breed', 
+          'microchip_number', 
+          'age', 
+          'price', 
+          'description'
+        ],
+        },
+      ],
     });
 
-    res.status(200).json(newProject);
+    if (!categoryByIdData) {
+      res.status(404).json({ message: 'No category found with this id!' });
+      return;
+    }
+
+    const categoryById = categoryByIdData.map((category) => 
+        category.get({ plain: true })
+    );
+
+    res.status(200).json(categoryById);
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
-  try {
-    const projectData = await Project.destroy({
-      where: {
-        id: req.params.id,
-        user_id: req.session.user_id,
-      },
-    });
-
-    if (!projectData) {
-      res.status(404).json({ message: 'No project found with this id!' });
-      return;
-    }
-
-    res.status(200).json(projectData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
 
 module.exports = router;

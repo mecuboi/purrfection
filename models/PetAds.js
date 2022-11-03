@@ -20,7 +20,7 @@ PetAds.init(
       allowNull: false,
     },
     microchip_number: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
     age: {
@@ -53,6 +53,7 @@ PetAds.init(
     },
     seller_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: 'user',
         key: 'id',
