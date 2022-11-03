@@ -3,12 +3,12 @@ const PetAds = require('./PetAds');
 const Category = require('./Category')
 
 User.hasMany(PetAds, {
-  foreignKey: 'user_id',
+  foreignKey: 'seller_id',
   onDelete: 'CASCADE'
 });
 
 PetAds.belongsTo(User, {
-  foreignKey: 'user_id'
+  foreignKey: 'seller_id'
 });
 
 Category.hasMany(PetAds, {
