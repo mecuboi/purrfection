@@ -7,13 +7,14 @@ router.get('/', async (req, res) => {
     const petAdsData = await PetAds.findAll({
       order: [['date_created', 'DESC']],
       limit: 1,
+      include: [{ model: User }]
     });
 
 
     res.json(petAdsData[0])
 
     // res.render('homepage', { 
-    //   petAdsData, 
+    //   petAdsData[0], 
     //   logged_in: req.session.logged_in 
     // });
   } catch (err) {
@@ -29,42 +30,47 @@ router.get('/petads', async (req, res) => {
 
     });
 
+  
     // Serialize data so the template can read it
-    const petAds = petAdsData.map((project) => project.get({ plain: true }));
+    const petAds = petAdsData.map((pets) => pets.get({ plain: true }));
 
-    
     res.json(petAds)
+    
 
-    res.render('adList', { 
-      petAds, 
-      logged_in: req.session.logged_in 
-    });
+    // res.render('adList', { 
+    //   petAds, 
+    //   logged_in: req.session.logged_in 
+    // });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/petads/:id', withAuth, async (req, res) => {
+
+//Add withAuth
+router.get('/petads/:id', async (req, res) => {
   try {
-    const petAdsData = await Project.findByPk(req.params.id, {
-      
-    });
+    const petAdsData = await PetAds.findByPk(req.params.id);
+
+    
 
     const petAds = petAdsData.get({ plain: true });
 
-
     res.json(petAds)
+    
 
-    res.render('project', {
-      ...petAds,
-      logged_in: req.session.logged_in
-    });
+    // res.render('singleAdPage', {
+    //   ...petAds,
+    //   logged_in: req.session.logged_in
+    // });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/profile/:id', withAuth, async (req, res) => {
+
+//add withAuth
+router.get('/profile/:id', async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.params.id, {
@@ -74,18 +80,18 @@ router.get('/profile/:id', withAuth, async (req, res) => {
     const user = userData.get({ plain: true });
 
 
-    res.json(petAds)
+    res.json(user)
 
-    res.render('profile', {
-      ...user,
-      logged_in: req.session.logged_in
-    });
+    // res.render('profile', {
+    //   ...user,
+    //   logged_in: req.session.logged_in
+    // });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/category/:id', withAuth, async (req, res) => {
+router.get('/categories/:id', async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const categoryData = await Category.findByPk(req.params.id, {
@@ -97,10 +103,10 @@ router.get('/category/:id', withAuth, async (req, res) => {
 
     res.json(category)
 
-    res.render('adList', {
-      ...category,
-      logged_in: req.session.logged_in
-    });
+    // res.render('adList', {
+    //   ...category,
+    //   logged_in: req.session.logged_in
+    // });
   } catch (err) {
     res.status(500).json(err);
   }
