@@ -53,7 +53,7 @@ User.init(
       allowNull: false,
     },
     saved_petAds_id: {
-      type: DataTypes.INTERGER,
+      type: DataTypes.INTEGER,
       allowNull: true,
       references: {
         model: 'pet_ads',
