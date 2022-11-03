@@ -16,7 +16,11 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    last_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -28,11 +32,32 @@ User.init(
         isEmail: true,
       },
     },
+    phone_number: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isNumeric: true,
+      },
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [8],
+        isAlphanumeric: true,
+      },
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    saved_petAds_id: {
+      type: DataTypes.INTERGER,
+      allowNull: true,
+      references: {
+        model: 'pet_ads',
+        key: 'id',
       },
     },
   },
