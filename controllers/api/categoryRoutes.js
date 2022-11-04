@@ -29,8 +29,13 @@ router.get('/', async (req, res) => {
     category.get({ plain: true })
  );
 
+// For testing in Insomnia 
+  // res.status(200).json(category)
+  res.render('adList', {
+    category,
+    //TODO propertyName: req.session.propertyName
 
-  res.status(200).json(category)
+  })
  } catch (err) {
   res.status(400).json(err);
  }
@@ -62,8 +67,13 @@ router.get('/:id', async (req, res) => {
     const categoryById = categoryByIdData.map((category) => 
         category.get({ plain: true })
     );
+// For testing in insomnia
+    // res.status(200).json(categoryById);
+    res.render('adList', {
+      categoryById,
+      //TODO propertyName: req.session.propertyName
 
-    res.status(200).json(categoryById);
+    })
   } catch (err) {
     res.status(400).json(err);
   }

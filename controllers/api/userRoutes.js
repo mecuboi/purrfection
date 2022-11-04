@@ -1,0 +1,125 @@
+const router = require('express').Router();
+const { User, PetAds } = require('../../models');
+const withAuth = require('../../utils/auth');
+
+//get routes
+router.get('/', async (req, res) => {
+    try {
+        const userData = await User.findAll()
+        //TODO add include: model: Petads through saved_pets_id once relation added to Models/index.js
+        
+        const users = userData.map((user) => 
+            user.get({ plain: true })
+            );
+
+            // req.session.save(() => {
+            //     if(req.session.propertyName) {
+            //     }
+            
+            
+            // TODO test
+            res.status(200).json(users)
+          //TODO add res.render after testing
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+      }
+});
+
+router.get('/:id', async (req, res) => {
+    try {
+        const userDataById = await User.findByPk(req.params.id)
+        //TODO add include: model: Petads through saved_pets_id once relation added to Models/index.js
+
+        const userById = userDataById.get({ plain: true});
+
+        //TODO test
+        res.status(200).json(userById)
+
+        // res.render('profile', {
+        //     userById
+        // });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+      }
+});
+
+//post routes
+
+router.post('/', async (req, res) => {
+    try {
+        const postUser = await User.create({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            email: req.body.email,
+            phone_number: req.body.phone_number,
+            password: req.body.password,
+            address: req.body.address,
+            saved_petAds_id: req.body.saved_petAds_id 
+        });
+
+        //TODO test in insomnia
+        res.status(200).json(postUser)
+
+        //TODO add res.render after test
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+      }
+});
+
+//Update routes
+
+router.put('/:id', async (req, res) => {
+    try {
+        const updateUser = await User.update({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            email: req.body.email,
+            phone_number: req.body.phone_number,
+            password: req.body.password,
+            address: req.body.address,
+            saved_petAds_id: req.body.saved_petAds_id 
+        },
+        {
+            where: {
+                id: req.params.id,
+            },
+        });
+
+        if(!updateUser) {
+            return res.status(404).json({ message: 'No such user found!' });
+        } else {
+            //TODO test and replace with res.render
+            res.status(200).json(updateUser)
+        }
+    } catch (err) {
+    res.status(500).json(err);
+  }
+})
+
+
+//Delete routes
+
+router.delete('/:id', async (req,res) => {
+    try {
+        const deleteUser = await User.destroy({
+            where: {
+                id: req.params.id,
+            },
+        });
+
+        if(!deleteUser) {
+            return res.status(404).json({ message: 'No such user found!' });
+        } else {
+            //TODO test and replace with res.render if used in FE
+            res.status(200).json(deleteUser)
+        }
+    } catch (err) {
+        res.status(500).json(err);
+      }
+})
+
+module.exports = router;
