@@ -1,35 +1,66 @@
 const router = require('express').Router();
-const {PetAds} = require('../../models');
+const { PetAds, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.post('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const newProject = await Project.create({
-      ...req.body,
-      user_id: req.session.user_id,
+    const newPetAds = await PetAds.findAll({
+      include: {model: User}
     });
 
-    res.status(200).json(newProject);
+    res.status(200).json(newPetAds);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.post('/', async (req, res) => {
   try {
-    const projectData = await Project.destroy({
+    const newPetAds = await PetAds.create(req.body);
+
+    res.status(200).json(newPetAds);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.put('/:id', async (req, res) => {
+  try {
+    const petAds = await PetAds.update(req.body,{
       where: {
         id: req.params.id,
-        user_id: req.session.user_id,
+        // user_id: req.session.user_id,
       },
+  
     });
 
-    if (!projectData) {
-      res.status(404).json({ message: 'No project found with this id!' });
+    if (!petAds) {
+      res.status(404).json({ message: 'No ads found with this id!' });
       return;
     }
 
-    res.status(200).json(projectData);
+    res.status(200).json(petAds);
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err);
+  }
+})
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const petAds = await PetAds.destroy({
+      where: {
+        id: req.params.id,
+        // user_id: req.session.user_id,
+      },
+    });
+
+    if (!petAds) {
+      res.status(404).json({ message: 'No ads found with this id!' });
+      return;
+    }
+
+    res.status(200).json(petAds);
   } catch (err) {
     res.status(500).json(err);
   }

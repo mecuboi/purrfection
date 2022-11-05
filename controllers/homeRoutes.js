@@ -27,7 +27,7 @@ router.get('/petads', async (req, res) => {
   try {
     // Get all projects and JOIN with user data
     const petAdsData = await PetAds.findAll({
-
+      include: {model: User}
     });
 
   
@@ -50,15 +50,18 @@ router.get('/petads', async (req, res) => {
 //Add withAuth
 router.get('/petads/:id', async (req, res) => {
   try {
-    const petAdsData = await PetAds.findByPk(req.params.id);
+    const petAdsData = await PetAds.findByPk(req.params.id,{
+      include: {model: User}
+    });
 
-    
+    if (!petAdsData) {
+      res.redirect('/404notfound')
+    }
 
     const petAds = petAdsData.get({ plain: true });
 
     res.json(petAds)
     
-
     // res.render('singleAdPage', {
     //   ...petAds,
     //   logged_in: req.session.logged_in
@@ -111,6 +114,8 @@ router.get('/categories/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
