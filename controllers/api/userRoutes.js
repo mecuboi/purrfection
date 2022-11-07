@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
     try {
         const userData = await User.findAll({
           include: [
-            { model: User }
+            { model: PetAds }
           ]
         })
         
@@ -15,12 +15,7 @@ router.get('/', async (req, res) => {
             user.get({ plain: true })
             );
 
-            // req.session.save(() => {
-            //     if(req.session.propertyName) {
-            //     }
-            
-            
-            // TODO test
+
             res.status(200).json(users)
 
     } catch (err) {
@@ -33,18 +28,11 @@ router.get('/:id', async (req, res) => {
     try {
         const userDataById = await User.findByPk(req.params.id, {
           include: [
-            { model: User }
+            { model: PetAds }
           ]
         })
 
-        const userById = userDataById.get({ plain: true});
-
-        //TODO test
-        res.status(200).json(userById)
-
-        // res.render('profile', {
-        //     userById
-        // });
+        res.status(200).json(userDataById)
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -65,7 +53,6 @@ router.post('/', async (req, res) => {
             saved_petAds_id: req.body.saved_petAds_id 
         });
 
-        //TODO test in insomnia
         res.status(200).json(postUser)
 
     } catch (err) {
