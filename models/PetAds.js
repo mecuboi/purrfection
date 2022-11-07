@@ -43,6 +43,12 @@ PetAds.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      // TODO test what string comes back
+      // isUrl: true
+    },
     category_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -59,6 +65,7 @@ PetAds.init(
         key: 'id',
       },
     },
+   
   },
   {
     sequelize,
