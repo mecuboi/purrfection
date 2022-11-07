@@ -1,10 +1,10 @@
-<div class="row">
-  <div class="col-auto">
-    <h2>Welcome, {{user.first_name}}!</h2>
-  </div>
+{{!-- TODO remove bg-stone once donce --}}
+<body class="font-mono bg-stone-800">
+<div class="container-fill mx-auto mb-5 py-5 text-xl bg-gradient-to-r from-orange-300 to-orange-600">
+    <h2 class="text-center transform transition duration-500 hover:scale-125 hover:text-neutral-50">Welcome, <strong>{{user.first_name}}!</strong></h2>
 </div>
 
-<div class="row mt-4">
+{{!-- <div class="row mt-4">
   <div class="col-md-6">
     <h3>Create a New Project:</h3>
 
@@ -43,6 +43,42 @@
     {{/each}}
   </div>
   {{/if}}
+</div> --}}
+{{!-- Parent div for profile page elements classes containing 'md:' indicate elements shown differently for larger screens --}}
+<div id="hero" class="flex justify-around md:w-6/12">
+  <div class="w-full max-w-sm bg-orange-500 rounded-lg border border-yellow-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <div class="flex justify-end px-4 pt-4">
+          <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+              <span class="sr-only">Open dropdown</span>
+              <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+          </button>
+          <!-- Dropdown menu -->
+          <div id="dropdown" class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 749.6px, 0px);" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
+              <ul class="py-1" aria-labelledby="dropdownButton">
+              <li>
+                  <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
+              </li>
+              <li>
+                  <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Export Data</a>
+              </li>
+              <li>
+                  <a href="#" class="block py-2 px-4 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+              </li>
+              </ul>
+          </div>
+      </div>
+      <div class="flex flex-col items-center pb-10">
+          {{!-- <img class="mb-3 w-24 h-24 rounded-full shadow-lg" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image"> --}}
+          <h5 class="mb-1 text-xl font-medium text-neutral-100">{{user.first_name}} {{user.last_name}}</h5>
+          <a href='tel:{{user.phone_number}}'><span class="text-sm text-gray-500">{{user.phone_number}}</span></a>
+          <div class="flex mt-4 space-x-3 md:mt-6">
+              <a href="#" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add friend</a>
+              <a href="#" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Message</a>
+          </div>
+      </div>
+  </div>
 </div>
+
+</body>
 
 <script src="./js/profile.js"></script>
