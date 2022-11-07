@@ -23,29 +23,31 @@ try {
   }
 
   const postPetAd = await PetAds.create({
-    image: req.files
+    image: req.files.petImage
   });
     //TODO test in insomnia
     res.status(200).json(postUser)
+
+    console.log('req.files >>>', req.files); 
+
+    //   sampleFile = req.files.sampleFile;
+    
+    //   uploadPath = __dirname + '/uploads/' + sampleFile.name;
+    
+    //   sampleFile.mv(uploadPath, function(err) {
+    //     if (err) {
+    //       return res.status(500).send(err);
+    //     }
+    
+        res.send('File uploaded to ' + uploadPath);
 
 } catch (err) {
     console.log(err);
     res.status(500).json(err);
 }
 
-  console.log('req.files >>>', req.files); 
-
-//   sampleFile = req.files.sampleFile;
-
-//   uploadPath = __dirname + '/uploads/' + sampleFile.name;
-
-//   sampleFile.mv(uploadPath, function(err) {
-//     if (err) {
-//       return res.status(500).send(err);
-//     }
-
-    res.send('File uploaded to ' + uploadPath);
+ 
   });
-})
+
 
 module.exports = router;

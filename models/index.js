@@ -17,6 +17,14 @@ Category.hasMany(PetAds, {
 
 PetAds.belongsTo(Category, {
   foreignKey: 'category_id'
-})
+});
+
+PetAds.hasMany(User, {
+  foreignKey: 'saved_petAds_id'
+});
+
+User.belongsTo(PetAds, {
+  foreignKey: 'saved_petAds_id'
+});
 
 module.exports = { User, PetAds, Category };
