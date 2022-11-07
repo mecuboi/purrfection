@@ -14,7 +14,6 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      // If successful, redirect the browser to the profile page
       document.location.replace('/');
     } else {
       alert(response.statusText);
@@ -25,12 +24,12 @@ const loginFormHandler = async (event) => {
 const signupFormHandler = async (event) => {
   event.preventDefault();
 
-  const firstName = document.querySelector('#first-name-signup').value.trim();
-  const lastName = document.querySelector('#last-name-signup').value.trim();
-  const email = document.querySelector('#email-signup').value.trim();
-  const password = document.querySelector('#password-signup').value.trim();
-  const address = document.querySelector('#address-signup').value.trim();
-  const phoneNumber = document.querySelector('#phone-number-signup').value.trim();
+  const firstName = document.querySelector('#grid-first-name').value.trim();
+  const lastName = document.querySelector('#grid-last-name').value.trim();
+  const email = document.querySelector('#grid-email').value.trim();
+  const password = document.querySelector('#user-password').value.trim();
+  const address = document.querySelector('#user-address').value.trim();
+  const phoneNumber = document.querySelector('#user-phone-number').value.trim();
 
 
   if (name && email && password) {
