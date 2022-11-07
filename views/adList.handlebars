@@ -1,47 +1,13 @@
-<!--
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
--->
-<div class="bg-white">
-
-  <div class="grid grid-rows-3 grid-flow-col gap-4">
-
-    {{#each petAds as |ads|}}
-    {{> adList-details.handlebars}}
-      <p>{{ads.description}}</p>
-    {{/each}}
-
-
-
-{{!-- <div class="row-start-1 col-span-2">
-      <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
-        alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
-        class="h-full w-full object-cover object-center group-hover:opacity-75">
-    </div>
-
-    <div class="col-span-2">
-      <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg"
-        alt="Olive drab green insulated bottle with flared screw lid and flat top."
-        class="h-full w-full object-cover object-center group-hover:opacity-75">
-    </div>
-
-    <div class="row-span-2 col-span-4">
-      <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg"
-        alt="Person using a pen to cross a task off a productivity paper card."
-        class="h-full w-full object-cover object-center group-hover:opacity-75">
-    </div> 
-
-    More products... 
-  </div> --}}
-
-</div>
+{{#each petAds as |ads|}}
+<a href="#"
+  class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 adList">
+  <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+    src="{{ads.image}}" alt="">
+  <div class="flex flex-col justify-between p-4 leading-normal">
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+      {{ads.name}} {{ads.breed}}
+    </h5>
+    <p class="mb-3 font-normal text-gray-700">{{ads.description}}</p>
+  </div>
+</a>
+{{/each}}

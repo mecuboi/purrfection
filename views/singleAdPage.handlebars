@@ -1,42 +1,31 @@
-<!--
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
--->
 <div class="bg-white">
 
-  <div class="grid grid-rows-3 grid-flow-col gap-4">
+  <span>
+    <p>Test</p>
+  </span>
 
-    <div class="row-start-1 col-span-2">
-      <p>Pet Description</p>
-      <p>{{PetAds.description}}</p>
-    </div>
-    </a>
+  <span
+    class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+    id="petDescription">
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Pet Description</h5>
+    <p>{{petAds.description}}</p>
+  </span>
 
-    <div class="col-span-2">
-      <p>Breeder's Contact Details</p>
-      <p>{{user.first_name}}</p>
-      <p>{{user.last_name}}</p>
-      <p>{{user.email}}</p>
-      <p>{{user.phone_number}}</p>
-    </div>
-    </a>
+  <span
+    class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+    id="breederDetail">
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Breeder's Contact Details</h5>
+    <p>{{petAds.user.first_name}} {{petAds.user.last_name}}</p>
+    <p>{{petAds.user.email}}</p>
+    <p>{{petAds.user.phone_number}}</p>
+  </span>
 
-    <div class="row-span-2 col-span-4">
-      <!-- <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg" -->
-      {{> singleAdPage-details.handlebars}} 
-    </div>
-    </a>
+  <span
+    class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+    id="petPic">
+    <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg"
+      alt="Person using a pen to cross a task off a productivity paper card."
+      class="h-full w-full object-cover object-center group-hover:opacity-75">
+  </span>
 
-    <!-- More products... -->
-  </div>
 </div>
