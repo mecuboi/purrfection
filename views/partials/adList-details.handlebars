@@ -1,0 +1,32 @@
+<!-- <section class="card">
+    The contents of this card links to the gallery page using the gallery ID
+    <a href="/gallery/{{id}}">
+        The card contains the gallery name as the card header
+        <header>{{name}}</header>
+        The card contains the first painting of the gallery
+        <img src="/images/{{paintings.[0].filename}}" alt="{{paintings.[0].description}}">
+    </a>
+</section> -->
+
+<!-- <div class="row-start-1 col-span-2">
+    <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
+        alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
+        class="h-full w-full object-cover object-center group-hover:opacity-75">
+</div> -->
+
+<!-- <div class="row-start-1 col-span-2">
+    <!-- The contents of this card links to the gallery page using the gallery ID -->
+<a href="/gallery/{{id}}">
+    <!-- The card contains the gallery name as the card header -->
+    <header>{{name}}</header>
+    <!-- The card contains the first painting of the gallery
+        <img src="/images/{{paintings.[0].filename}}" alt="{{paintings.[0].description}}">
+    </a>
+</div> -->
+
+    <section class="card">
+        <a href="/gallery/{{id}}">
+            <header>{{name}}</header>
+            <img src="/images/{{paintings.[0].filename}}" alt="{{paintings.[0].description}}">
+        </a>
+    </section>

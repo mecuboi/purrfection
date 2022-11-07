@@ -17,23 +17,23 @@
   <div class="grid grid-rows-3 grid-flow-col gap-4">
 
     <div class="row-start-1 col-span-2">
-      <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
-        alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
-        class="h-full w-full object-cover object-center group-hover:opacity-75">
+      <p>Pet Description</p>
+      <p>{{PetAds.description}}</p>
     </div>
     </a>
 
     <div class="col-span-2">
-      <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg"
-        alt="Olive drab green insulated bottle with flared screw lid and flat top."
-        class="h-full w-full object-cover object-center group-hover:opacity-75">
+      <p>Breeder's Contact Details</p>
+      <p>{{user.first_name}}</p>
+      <p>{{user.last_name}}</p>
+      <p>{{user.email}}</p>
+      <p>{{user.phone_number}}</p>
     </div>
     </a>
 
     <div class="row-span-2 col-span-4">
-      <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg"
-        alt="Person using a pen to cross a task off a productivity paper card."
-        class="h-full w-full object-cover object-center group-hover:opacity-75">
+      <!-- <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg" -->
+      {{> singleAdPage-details.handlebars}} 
     </div>
     </a>
 
