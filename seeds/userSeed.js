@@ -26,10 +26,10 @@ for (let i = 0; i <= 11; i++) {
     usersArray.push(userData);
  }
 
- console.log(usersArray)
  
-const seedUsers = () => User.bulkCreate(usersArray);
+const seedUsers = () => User.bulkCreate(usersArray, {
+    individualHooks: true,
+});
 
 module.exports = seedUsers;
-
 
