@@ -18,7 +18,7 @@ for (let i = 0; i <= 11; i++) {
         price: randomPriceGenerator(100), 
         image: faker.image.animals(),
         category_id: 1,    //1 Dogs, 2 Cats, 3 Small Animals
-        seller_id: i   //References user id
+        seller_id: 1   //References user id
     };
     //Add an additional property, as dogAdData needs to be initialised before being able to call its properties
     dogAdData.description = `${dogAdData.name} is a very very ${randomDescription()} dog.`
@@ -44,7 +44,7 @@ for (let i = 0; i <= 11; i++) {
         price: randomPriceGenerator(100), 
         image: faker.image.animals(),
         category_id: 2,    //1 Dogs, 2 Cats, 3 Small Animals
-        seller_id: i    //References user id
+        seller_id: 1    //References user id
     };
     //Add an additional property, as dogAdData needs to be initialised before being able to call its properties
     catAdData.description = `${catAdData.name} is a very very ${randomDescription()} cat.`
@@ -70,7 +70,7 @@ for (let i = 0; i <= 11; i++) {
         price: randomPriceGenerator(100), 
         image: faker.image.animals(),
         category_id: 3,    //1 Dogs, 2 Cats, 3 Small Animals
-        seller_id: i   //References user id
+        seller_id: 1   //References user id
     };
     //Add an additional property, as dogAdData needs to be initialised before being able to call its properties
     smallAdData.description = `${smallAdData.name} is a very very ${randomDescription()} rabbit.`

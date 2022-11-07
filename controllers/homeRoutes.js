@@ -11,12 +11,12 @@ router.get('/', async (req, res) => {
     });
 
 
-    res.json(petAdsData[0])
+    // res.json(petAdsData[0])
 
-    // res.render('homepage', { 
-    //   petAdsData[0], 
-    //   logged_in: req.session.logged_in 
-    // });
+    res.render('homepage', { 
+      petAdsData, 
+      logged_in: req.session.logged_in 
+    });
   } catch (err) {
     res.status(500).json(err);
     console.log (err);
@@ -34,18 +34,17 @@ router.get('/petads', async (req, res) => {
     // Serialize data so the template can read it
     const petAds = petAdsData.map((pets) => pets.get({ plain: true }));
 
-    res.json(petAds)
+    // res.json(petAds)
     
 
-    // res.render('adList', { 
-    //   petAds, 
-    //   logged_in: req.session.logged_in 
-    // });
+    res.render('adList', { 
+      petAds, 
+      logged_in: req.session.logged_in 
+    });
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
 
 //Add withAuth
 router.get('/petads/:id', async (req, res) => {
@@ -60,12 +59,12 @@ router.get('/petads/:id', async (req, res) => {
 
     const petAds = petAdsData.get({ plain: true });
 
-    res.json(petAds)
+    // res.json(petAds)
     
-    // res.render('singleAdPage', {
-    //   ...petAds,
-    //   logged_in: req.session.logged_in
-    // });
+    res.render('singleAdPage', {
+      ...petAds,
+      logged_in: req.session.logged_in
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -83,12 +82,12 @@ router.get('/profile/:id', async (req, res) => {
     const user = userData.get({ plain: true });
 
 
-    res.json(user)
+    // res.json(user)
 
-    // res.render('profile', {
-    //   ...user,
-    //   logged_in: req.session.logged_in
-    // });
+    res.render('profile', {
+      ...user,
+      logged_in: req.session.logged_in
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -104,18 +103,16 @@ router.get('/categories/:id', async (req, res) => {
     const category = categoryData.get({ plain: true });
 
 
-    res.json(category)
+    // res.json(category)
 
-    // res.render('adList', {
-    //   ...category,
-    //   logged_in: req.session.logged_in
-    // });
+    res.render('adList', {
+      ...category,
+      logged_in: req.session.logged_in
+    });
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
-
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
@@ -125,6 +122,14 @@ router.get('/login', (req, res) => {
   }
 
   res.render('login');
+});
+
+router.get('/404', (req, res) => {
+  res.render('404')
+});
+
+router.get('*', (req, res) => {
+  res.redirect('/404')
 });
 
 module.exports = router;
