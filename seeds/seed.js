@@ -11,17 +11,15 @@ const seedDatabase = async () => {
  
   await seedCategories();
 
-  console.log('\n----- Pet Ads SEEDED -----\n');
+  console.log('\n----- Categories SEEDED -----\n');
 
   await seedUsers();
 
-  console.log('\n----- Categories SEEDED-----\n');
+  console.log('\n----- Users SEEDED-----\n');
 
   await seedPetAds();
 
-
-
-  console.log('\n----- Users SEEDED-----\n');
+  console.log('\n----- Pet Ads SEEDED-----\n');
 
   process.exit(0);
  
