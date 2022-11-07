@@ -13,13 +13,13 @@ router.get('/', async (req, res) => {
 
     // res.json(petAdsData[0])
 
-    res.render('homepage', { 
-      petAdsData, 
-      logged_in: req.session.logged_in 
+    res.render('homepage', {
+      petAdsData,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
-    console.log (err);
+    console.log(err);
   }
 });
 
@@ -27,19 +27,19 @@ router.get('/petads', async (req, res) => {
   try {
     // Get all projects and JOIN with user data
     const petAdsData = await PetAds.findAll({
-      include: {model: User}
+      include: { model: User }
     });
 
-  
+
     // Serialize data so the template can read it
     const petAds = petAdsData.map((pets) => pets.get({ plain: true }));
 
     // res.json(petAds)
-    
 
-    res.render('adList', { 
-      petAds, 
-      logged_in: req.session.logged_in 
+
+    res.render('adList', {
+      petAds,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -49,8 +49,8 @@ router.get('/petads', async (req, res) => {
 //Add withAuth
 router.get('/petads/:id', async (req, res) => {
   try {
-    const petAdsData = await PetAds.findByPk(req.params.id,{
-      include: {model: User}
+    const petAdsData = await PetAds.findByPk(req.params.id, {
+      include: { model: User }
     });
 
     if (!petAdsData) {
@@ -60,9 +60,9 @@ router.get('/petads/:id', async (req, res) => {
     const petAds = petAdsData.get({ plain: true });
 
     // res.json(petAds)
-    
+
     res.render('singleAdPage', {
-      ...petAds,
+      petAds,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -85,7 +85,7 @@ router.get('/profile/:id', async (req, res) => {
     // res.json(user)
 
     res.render('profile', {
-      ...user,
+      user,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -106,7 +106,7 @@ router.get('/categories/:id', async (req, res) => {
     // res.json(category)
 
     res.render('adList', {
-      ...category,
+      category,
       logged_in: req.session.logged_in
     });
   } catch (err) {
