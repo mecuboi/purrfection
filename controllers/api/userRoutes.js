@@ -10,7 +10,6 @@ router.get('/', async (req, res) => {
             { model: User }
           ]
         })
-        //TODO add include: model: Petads through saved_pets_id once relation added to Models/index.js
         
         const users = userData.map((user) => 
             user.get({ plain: true })
@@ -23,7 +22,6 @@ router.get('/', async (req, res) => {
             
             // TODO test
             res.status(200).json(users)
-          //TODO add res.render after testing
 
     } catch (err) {
         console.log(err);
@@ -38,7 +36,6 @@ router.get('/:id', async (req, res) => {
             { model: User }
           ]
         })
-        //TODO add include: model: Petads through saved_pets_id once relation added to Models/index.js
 
         const userById = userDataById.get({ plain: true});
 
@@ -71,7 +68,6 @@ router.post('/', async (req, res) => {
         //TODO test in insomnia
         res.status(200).json(postUser)
 
-        //TODO add res.render after test
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -100,7 +96,7 @@ router.put('/:id', async (req, res) => {
         if(!updateUser) {
             return res.status(404).json({ message: 'No such user found!' });
         } else {
-            //TODO test and replace with res.render
+            //TODO test
             res.status(200).json(updateUser)
         }
     } catch (err) {
@@ -122,7 +118,7 @@ router.delete('/:id', async (req,res) => {
         if(!deleteUser) {
             return res.status(404).json({ message: 'No such user found!' });
         } else {
-            //TODO test and replace with res.render if used in FE
+            //TODO test
             res.status(200).json(deleteUser)
         }
     } catch (err) {

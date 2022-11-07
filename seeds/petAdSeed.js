@@ -16,7 +16,7 @@ for (let i = 0; i <= 11; i++) {
         microchip_number: Math.floor(Math.random() * 9999),
         //price random from 100 to 1000 in 2 decimal places
         price: randomPriceGenerator(100), 
-        image: faker.image.animals(),
+        image: faker.image.animals(true),
         category_id: 1,    //1 Dogs, 2 Cats, 3 Small Animals
         seller_id: 1   //References user id
     };
@@ -42,7 +42,7 @@ for (let i = 0; i <= 11; i++) {
         microchip_number: Math.floor(Math.random() * 9999),
         //price random from 100 to 1000 in 2 decimal places
         price: randomPriceGenerator(100), 
-        image: faker.image.animals(),
+        image: faker.image.animals(true),
         category_id: 2,    //1 Dogs, 2 Cats, 3 Small Animals
         seller_id: 1    //References user id
     };
@@ -68,7 +68,7 @@ for (let i = 0; i <= 11; i++) {
         age: randomAgeGenerator(10),
         //price random from 100 to 1000 in 2 decimal places
         price: randomPriceGenerator(100), 
-        image: faker.image.animals(),
+        image: faker.image.animals(true),
         category_id: 3,    //1 Dogs, 2 Cats, 3 Small Animals
         seller_id: 1   //References user id
     };
