@@ -16,7 +16,20 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const newPetAds = await PetAds.create(req.body);
+    const newPetAds = await PetAds.create({
+      ...req.body,
+      seller_id: req.session.userId
+
+      // name: req.body.name,
+      // breed: req.body.breed,
+      // microchip_number: req.body.microchip,
+      // age: req.body.age,
+      // price: req.body.price,
+      // description: req.body.description,
+      // image: req.body.image,
+      // category_id: req.body.category,
+      // seller_id: req.session.userId
+    });
 
     res.status(200).json(newPetAds);
   } catch (err) {
@@ -26,7 +39,7 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-    const petAds = await PetAds.update(req.body,{
+    const petAds = await PetAds.update(...req.body,{
       where: {
         id: req.params.id,
         // user_id: req.session.user_id,

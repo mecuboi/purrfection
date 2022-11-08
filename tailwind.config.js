@@ -3,6 +3,9 @@ module.exports = {
   content: ["./**/*.{html,js}", './**/*.hbs'],
   theme: {
     extend: {},
+  },  variants: {
+    display: ["responsive", "focus", "dropdown"]
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 }
+
