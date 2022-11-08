@@ -1,18 +1,3 @@
-/* #petDescription {
-    grid-column: span 2;
-    grid-row: span 2;
-}
-
-#breederDetail {
-    grid-column: span 3;
-    grid-row: span 2;
-}
-
-#petPic {
-    grid-column: span 2;
-    grid-row: span 2;
-} */
-
 .adList {
     margin: 1cm;
 }
