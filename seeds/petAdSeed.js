@@ -1,13 +1,13 @@
 const { PetAds } = require('../models');
 const { faker } = require('@faker-js/faker');
 const { randomPriceGenerator, randomAgeGenerator, randomDescription } = require('./utils/helpers');
-const { json } = require('sequelize');
+
 
 
 const petAdsArray = [];
 //generate 10 dogs
 for (let i = 0; i <= 11; i++) {
-   const counter = i
+   const counter = i;
     const dogAdData = {
         name: faker.name.firstName(),
         breed: faker.animal.dog(),
@@ -16,7 +16,7 @@ for (let i = 0; i <= 11; i++) {
         microchip_number: Math.floor(Math.random() * 9999),
         //price random from 100 to 1000 in 2 decimal places
         price: randomPriceGenerator(100), 
-        image: faker.image.animals(true),
+        image: faker.image.animals(1920, 1080, true),
         category_id: 1,    //1 Dogs, 2 Cats, 3 Small Animals
         seller_id: 1   //References user id
     };
@@ -42,7 +42,7 @@ for (let i = 0; i <= 11; i++) {
         microchip_number: Math.floor(Math.random() * 9999),
         //price random from 100 to 1000 in 2 decimal places
         price: randomPriceGenerator(100), 
-        image: faker.image.animals(true),
+        image: faker.image.cats(1920, 1080, true),
         category_id: 2,    //1 Dogs, 2 Cats, 3 Small Animals
         seller_id: 1    //References user id
     };
@@ -68,7 +68,7 @@ for (let i = 0; i <= 11; i++) {
         age: randomAgeGenerator(10),
         //price random from 100 to 1000 in 2 decimal places
         price: randomPriceGenerator(100), 
-        image: faker.image.animals(true),
+        image: faker.image.animals(1920, 1080, true),
         category_id: 3,    //1 Dogs, 2 Cats, 3 Small Animals
         seller_id: 1   //References user id
     };

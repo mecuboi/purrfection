@@ -52,14 +52,14 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    saved_petAds_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'pet_ads',
-        key: 'id',
-      },
-    },
+    // saved_petAds_id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: true,
+    //   references: {
+    //     model: 'pet_ads',
+    //     key: 'id',
+    //   },
+    // },
   },
   {
     hooks: {

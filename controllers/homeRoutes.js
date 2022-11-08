@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { PetAds, Category, User } = require('../models');
+const { PetAds, Category, User, SavedPetsTag } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -76,16 +76,17 @@ router.get('/profile/:id', async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.params.id, {
-      include: [{ model: PetAds }],
+      include: [{ model: PetAds, through: SavedPetsTag }],
+      // limit: 5
     });
 
     const user = userData.get({ plain: true });
-
-
-    // res.json(user)
+// user.pet_ads comes up as an array of objects, thus destructing is needed
+    const [favouritePetAds] = user.pet_ads
 
     res.render('profile', {
       user,
+      favouritePetAds,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -114,6 +115,14 @@ router.get('/categories/:id', async (req, res) => {
   }
 });
 
+router.get('/postad', async (req, res) => {
+  try {
+    res.render('postAd');
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
@@ -127,6 +136,11 @@ router.get('/login', (req, res) => {
 router.get('/404', (req, res) => {
   res.render('404')
 });
+
+router.get('/aboutus', (req, res) => {
+  res.render('aboutUs');
+});
+
 
 // router.get('*', (req, res) => {
 //   res.redirect('/404')

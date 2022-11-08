@@ -1,6 +1,7 @@
 const User = require('./User');
 const PetAds = require('./PetAds');
-const Category = require('./Category')
+const Category = require('./Category');
+const SavedPetsTag = require('./SavedPetsTag');
 
 User.hasMany(PetAds, {
   foreignKey: 'seller_id',
@@ -19,12 +20,16 @@ PetAds.belongsTo(Category, {
   foreignKey: 'category_id'
 });
 
-PetAds.hasMany(User, {
-  foreignKey: 'saved_petAds_id'
+User.belongsToMany(PetAds, {
+  foreignKey: 'user_tag_id',
+  through: SavedPetsTag
 });
 
-User.belongsTo(PetAds, {
-  foreignKey: 'saved_petAds_id'
+PetAds.belongsToMany(User, {
+  foreignKey: 'saved_pets_ads_id',
+  through: SavedPetsTag
 });
 
-module.exports = { User, PetAds, Category };
+
+
+module.exports = { User, PetAds, Category, SavedPetsTag };
