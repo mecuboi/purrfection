@@ -1,4 +1,4 @@
-<div class="bg-white">
+{{!-- <div class="bg-white">
 
   <span
     class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
@@ -23,4 +23,32 @@
       class="h-full w-full object-cover object-center group-hover:opacity-75">
   </span>
 
-</div>
+  gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6
+
+  gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6 block p-6
+  bg-white rounded-lg border border-gray-200 shadow-md
+
+</div> --}}
+
+<section class="bg-white dark:bg-gray-900">
+  <div class="items-center mx-auto max-w-screen-xl md:grid p-6 bg-white rounded-lg border border-gray-200 shadow-md">
+    <img class="w-full" src="{{petAds.image}}">
+    <br>
+    <div class="mt-4 md:mt-0">
+      <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">{{petAds.name}}
+        ({{petAds.breed}})</h1>
+      <p>{{petAds.description}}</p>
+      <br>
+      <p><strong>Age:</strong> {{petAds.age}}</p>
+      <p><strong>Microchip Number:</strong> {{petAds.microchip_number}}</p>
+      <p><strong>Price:</strong> $ {{petAds.price}}</p>
+      <br>
+      <h3 class="mb-4 text-2xl tracking-tight font-extrabold text-gray-900 dark:text-white">Seller Details</h3>
+      <p>{{petAds.user.first_name}} {{petAds.user.last_name}}</p>
+      <p>{{petAds.user.email}}</p>
+      <p>{{petAds.user.phone_number}}</p>
+      <br>
+      <p class="mb-6 text-gray-500 md:text-lg">Date Created: {{petAds.date_created}}</p>
+    </div>
+  </div>
+</section>
