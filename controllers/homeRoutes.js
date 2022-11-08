@@ -70,6 +70,9 @@ router.get('/petads/:id', async (req, res) => {
   }
 });
 
+router.get('/profile', async (req, res) => {
+  res.redirect(`/profile/${req.session.userId}`)
+});
 
 //add withAuth
 router.get('/profile/:id', async (req, res) => {
@@ -133,12 +136,12 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/404', (req, res) => {
-  res.render('404')
-});
-
 router.get('/aboutus', (req, res) => {
   res.render('aboutUs');
+});
+
+router.get('/404', (req, res) => {
+  res.render('404')
 });
 
 
