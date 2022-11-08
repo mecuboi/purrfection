@@ -1,16 +1,14 @@
 #petDescription {
-    margin-left: 12cm;
-    margin-top: 3cm;
+    display: inline-block;
 }
 
-/* #breederDetail {
-    margin-left: 12cm;
-    margin-top: 1cm;
+#breederDetail {
+    display: inline-block;
 }
 
 #petPic {
-    margin-bottom: 12cm;
-} */
+    display: inline-block;
+}
 
 .adList {
     margin: 1cm;
