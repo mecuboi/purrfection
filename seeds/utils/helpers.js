@@ -53,5 +53,17 @@ const randomDescription = () => {
     return captalisedDescriptions[randomIndex]
 };
 
+//TODO fix
+// const num = [];
+// for (let i = 0; i < 10; i++) {
+//     num.push(i)
+// }
+
+
+// const uniqueNumGenerator = (num) => {
+//     randomIndex = Math.floor(Math.random() * num.length)
+//     initialRandomNum = num[randomIndex];
+//     newNum = num.filter(nums => nums !== initialRandomNum)
+// }
 
 module.exports = { randomPriceGenerator, randomAgeGenerator, randomDescription, randomUserRole, randomPasswordGenerator }

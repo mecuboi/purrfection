@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, PetAds } = require('../../models');
+const { User, PetAds, SavedPetsTag } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 //get routes
@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
     try {
         const userData = await User.findAll({
           include: [
-            { model: PetAds }
+            { model: PetAds, through: SavedPetsTag }
           ]
         })
         
@@ -28,7 +28,7 @@ router.get('/:id', async (req, res) => {
     try {
         const userDataById = await User.findByPk(req.params.id, {
           include: [
-            { model: PetAds }
+            { model: PetAds, through: SavedPetsTag  }
           ]
         })
 
@@ -50,7 +50,7 @@ router.post('/', async (req, res) => {
             phone_number: req.body.phone_number,
             password: req.body.password,
             address: req.body.address,
-            saved_petAds_id: req.body.saved_petAds_id 
+            // saved_petAds_id: req.body.saved_petAds_id 
         });
 
         res.status(200).json(postUser)
@@ -72,7 +72,7 @@ router.put('/:id', async (req, res) => {
             phone_number: req.body.phone_number,
             password: req.body.password,
             address: req.body.address,
-            saved_petAds_id: req.body.saved_petAds_id 
+            // saved_petAds_id: req.body.saved_petAds_id 
         },
         {
             where: {

@@ -1,13 +1,13 @@
 const { PetAds } = require('../models');
 const { faker } = require('@faker-js/faker');
 const { randomPriceGenerator, randomAgeGenerator, randomDescription } = require('./utils/helpers');
-const { json } = require('sequelize');
+
 
 
 const petAdsArray = [];
 //generate 10 dogs
 for (let i = 0; i <= 11; i++) {
-   const counter = i
+   const counter = i;
     const dogAdData = {
         name: faker.name.firstName(),
         breed: faker.animal.dog(),
