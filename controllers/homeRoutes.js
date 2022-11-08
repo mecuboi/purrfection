@@ -81,7 +81,7 @@ router.get('/profile/:id', async (req, res) => {
 
     const user = userData.get({ plain: true });
 
-
+ console.log('user', user)
     // res.json(user)
 
     res.render('profile', {

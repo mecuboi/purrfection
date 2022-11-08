@@ -1,4 +1,4 @@
-{{!-- TODO remove bg-stone once donce --}}
+{{!-- TODO remove bg-stone once done --}}
 <body class="font-mono bg-stone-800">
 <div class="container-fill mx-auto mb-5 py-5 text-xl bg-gradient-to-r from-orange-300 to-orange-600">
     <h2 class="text-center transform transition duration-500 hover:scale-125 hover:text-neutral-50">Welcome, <strong>{{user.first_name}}!</strong></h2>
@@ -45,8 +45,8 @@
   {{/if}}
 </div> --}}
 {{!-- Parent div for profile page elements classes containing 'md:' indicate elements shown differently for larger screens --}}
-<div id="hero" class="flex justify-around md:w-6/12">
-  <div class="w-full max-w-sm bg-orange-500 rounded-lg border border-yellow-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+<div id="hero" class="flex flex-row justify-around">
+  <div class="w-full md:w-6/12 bg-gradient-to-b from-orange-200 to bg-orange-400 rounded-lg border border-yellow-200 shadow-md">
       <div class="flex justify-end px-4 pt-4">
           <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
               <span class="sr-only">Open dropdown</span>
@@ -69,7 +69,7 @@
       </div>
       <div class="flex flex-col items-center pb-10">
           {{!-- <img class="mb-3 w-24 h-24 rounded-full shadow-lg" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image"> --}}
-          <h5 class="mb-1 text-xl font-medium text-neutral-100">{{user.first_name}} {{user.last_name}}</h5>
+          <h5 class="mb-1 text-xl font-medium">{{user.first_name}} {{user.last_name}}</h5>
           <a href='tel:{{user.phone_number}}'><span class="text-sm text-gray-500">{{user.phone_number}}</span></a>
           <div class="flex mt-4 space-x-3 md:mt-6">
               <a href="#" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add friend</a>
@@ -77,7 +77,22 @@
           </div>
       </div>
   </div>
+  <a href="#"
+  class="flex flex-col w-full bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 adList">
+  <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+    src="{{user.pet_ads.image}}" alt="">
+  <div class="flex flex-col justify-between p-4 leading-normal">
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+      {{ads.name}} {{ads.breed}}
+    </h5>
+    <p class="mb-3 font-normal text-gray-700">{{ads.description}}</p>
+  </div>
+</a>
 </div>
+
+
+
+
 
 </body>
 
