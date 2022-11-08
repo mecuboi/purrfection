@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, PetAds } = require('../../models');
+const { User, PetAds, SavedPetsTag } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 //get routes
@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
     try {
         const userData = await User.findAll({
           include: [
-            { model: User }
+            { model: PetAds, through: SavedPetsTag }
           ]
         })
         
@@ -15,12 +15,7 @@ router.get('/', async (req, res) => {
             user.get({ plain: true })
             );
 
-            // req.session.save(() => {
-            //     if(req.session.propertyName) {
-            //     }
-            
-            
-            // TODO test
+
             res.status(200).json(users)
 
     } catch (err) {
@@ -33,18 +28,11 @@ router.get('/:id', async (req, res) => {
     try {
         const userDataById = await User.findByPk(req.params.id, {
           include: [
-            { model: User }
+            { model: PetAds, through: SavedPetsTag  }
           ]
         })
 
-        const userById = userDataById.get({ plain: true});
-
-        //TODO test
-        res.status(200).json(userById)
-
-        // res.render('profile', {
-        //     userById
-        // });
+        res.status(200).json(userDataById)
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -62,10 +50,9 @@ router.post('/', async (req, res) => {
             phone_number: req.body.phone_number,
             password: req.body.password,
             address: req.body.address,
-            saved_petAds_id: req.body.saved_petAds_id 
+            // saved_petAds_id: req.body.saved_petAds_id 
         });
 
-        //TODO test in insomnia
         res.status(200).json(postUser)
 
     } catch (err) {
@@ -85,7 +72,7 @@ router.put('/:id', async (req, res) => {
             phone_number: req.body.phone_number,
             password: req.body.password,
             address: req.body.address,
-            saved_petAds_id: req.body.saved_petAds_id 
+            // saved_petAds_id: req.body.saved_petAds_id 
         },
         {
             where: {
