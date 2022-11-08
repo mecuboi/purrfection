@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { PetAds, Category, User } = require('../models');
+const { PetAds, Category, User, SavedPetsTag } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -76,7 +76,7 @@ router.get('/profile/:id', async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.params.id, {
-      include: [{ model: PetAds }],
+      include: [{ model: PetAds, through: SavedPetsTag }],
     });
 
     const user = userData.get({ plain: true });
