@@ -1,6 +1,5 @@
-{{!-- TODO remove bg-stone once done --}}
-<body class="font-mono bg-stone-800">
-<div class="container-fill mx-auto mb-5 py-5 text-xl bg-gradient-to-r from-orange-300 to-orange-600">
+<body class="font-mono">
+<div class="container-fill mx-auto mb-5 py-5 text-xl bg-gradient-to-r from-orange-200 to-orange-300">
     <h2 class="text-center transform transition duration-500 hover:scale-125 hover:text-neutral-50">Welcome, <strong>{{user.first_name}}!</strong></h2>
 </div>
 
@@ -45,8 +44,8 @@
   {{/if}}
 </div> --}}
 {{!-- Parent div for profile page elements classes containing 'md:' indicate elements shown differently for larger screens --}}
-<div id="hero" class="md:grid md:grid-cols-2 gap-1 flex flex-row justify-around">
-  <div class="w-full  bg-gradient-to-b from-orange-200 to bg-orange-400 rounded-lg border border-yellow-200 shadow-md">
+<div id="hero" class="flex flex-row justify-around pb-5 md:grid md:grid-cols-2 gap-1 ">
+  <div class="w-full  bg-gradient-to-b from-orange-200 to bg-orange-300 rounded-lg border border-yellow-200 shadow-md">
       <div class="flex justify-end px-4 pt-4">
           {{!-- <button id="dropdown-btn" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
               <span class="sr-only">Open dropdown</span>
@@ -71,20 +70,20 @@
 </button>
 
 <!-- Dropdown menu -->
-<div id="dropdownDotsHorizontal" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+<div id="dropdownDotsHorizontal" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow">
     <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
       <li>
-        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+        <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-gray-600 hover:text-gray-200">Edit</a>
       </li>
       <li>
-        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+        <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-gray-600 hover:text-gray-200">Settings</a>
       </li>
       <li>
-        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Surprise</a>
+        <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-gray-600 hover:text-gray-200">Surprise</a>
       </li>
     </ul>
     <div class="py-1">
-      <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Separated link</a>
+      <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Separated link</a>
     </div>
 </div>
       </div>
@@ -103,18 +102,18 @@
 
  {{!-- {{#each petAds}} --}}
   <div id="favourite-ad" class="flex flex-row w-full bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 ">
-  <div id="favourite-ad-title" class="container bg-orange-200">
+  <div id="favourite-ad-title" class="container bg-orange-300">
     <h2 class="text-center"> My favourites: </h2>
   </div>
   <a href="/petads/{{favouritePetAds.id}}" target="_blank"
   class="adList">
-  <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+  <img class="object-cover w-full h-auto rounded-lg md:h-auto md:w-auto"
     src="{{favouritePetAds.image}}" alt="{{favouritePetAds.name}}">
   <div class="flex flex-col justify-between p-4 leading-normal">
     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-    {{favouritePetAds.name}}
+    {{favouritePetAds.name}} <span class="italic text-stone-400">({{favouritePetAds.breed}})</span>
     </h5>
-    <p class="mb-3 font-normal text-gray-700">{{favouritePetAds .description}}</p>
+    <p class="mb-3 font-normal text-gray-700">{{favouritePetAds.description}}</p>
   </div>
 </a>
 </div>
