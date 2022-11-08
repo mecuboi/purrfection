@@ -1,18 +1,25 @@
-/* #petDescription {
-    grid-column: span 2;
-    grid-row: span 2;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+#petDescription {
+    margin-left: 12cm;
+    margin-top: 3cm;
 }
 
-#breederDetail {
-    grid-column: span 3;
-    grid-row: span 2;
-}
-
-#petPic {
-    grid-column: span 2;
-    grid-row: span 2;
-} */
 
 .adList {
     margin: 1cm;
+}
+
+body {
+    background-image: url('../images/cute-bg.png');
+}
+
+
+
+ul li:hover ul.dropdown-menu {
+    display: block;
+    /* Display the dropdown */
 }
