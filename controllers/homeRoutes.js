@@ -106,7 +106,7 @@ router.get('/categories/:id', async (req, res) => {
 
     // res.json(category)
 
-    res.render('adList', {
+    res.render('category', {
       category,
       logged_in: req.session.logged_in
     });
@@ -141,9 +141,5 @@ router.get('/aboutus', (req, res) => {
   res.render('aboutUs');
 });
 
-
-// router.get('*', (req, res) => {
-//   res.redirect('/404')
-// });
 
 module.exports = router;
