@@ -23,6 +23,7 @@ SavedPetsTag.init(
     user_tag_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
+        
         references: {
           model: 'user',
           key: 'id',

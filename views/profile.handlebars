@@ -45,10 +45,10 @@
   {{/if}}
 </div> --}}
 {{!-- Parent div for profile page elements classes containing 'md:' indicate elements shown differently for larger screens --}}
-<div id="hero" class="flex flex-row justify-around">
-  <div class="w-full md:w-6/12 bg-gradient-to-b from-orange-200 to bg-orange-400 rounded-lg border border-yellow-200 shadow-md">
+<div id="hero" class="md:grid md:grid-cols-2 gap-1 flex flex-row justify-around">
+  <div class="w-full  bg-gradient-to-b from-orange-200 to bg-orange-400 rounded-lg border border-yellow-200 shadow-md">
       <div class="flex justify-end px-4 pt-4">
-          <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+          <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
               <span class="sr-only">Open dropdown</span>
               <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
           </button>
@@ -77,17 +77,26 @@
           </div>
       </div>
   </div>
-  <a href="#"
-  class="flex flex-col w-full bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 adList">
+
+ {{!-- {{#each petAds}} --}}
+  <div id="favourite-ad" class="flex flex-row w-full bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 ">
+  <div id="favourite-ad-title" class="container bg-orange-200">
+    <h2 class="text-center"> My favourites: </h2>
+  </div>
+  {{!-- TODO add link via js by data-id value --}}
+  <a href="/petads/{{favouritePetAds.id}}" target="_blank"
+  class="adList">
   <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-    src="{{user.pet_ads.image}}" alt="">
+    src="{{favouritePetAds.image}}" alt="{{favouritePetAds.name}}">
   <div class="flex flex-col justify-between p-4 leading-normal">
     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-      {{ads.name}} {{ads.breed}}
+    {{favouritePetAds.name}}
     </h5>
-    <p class="mb-3 font-normal text-gray-700">{{ads.description}}</p>
+    <p class="mb-3 font-normal text-gray-700">{{favouritePetAds .description}}</p>
   </div>
 </a>
+</div>
+{{!-- {{/#each}} --}}
 </div>
 
 

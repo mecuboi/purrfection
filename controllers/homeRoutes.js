@@ -77,15 +77,16 @@ router.get('/profile/:id', async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.params.id, {
       include: [{ model: PetAds, through: SavedPetsTag }],
+      // limit: 5
     });
 
     const user = userData.get({ plain: true });
-
- console.log('user', user)
-    // res.json(user)
+// user.pet_ads comes up as an array of objects, thus destructing is needed
+    const [favouritePetAds] = user.pet_ads
 
     res.render('profile', {
       user,
+      favouritePetAds,
       logged_in: req.session.logged_in
     });
   } catch (err) {
