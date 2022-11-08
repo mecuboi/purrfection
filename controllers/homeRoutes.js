@@ -117,7 +117,7 @@ router.get('/categories/:id', async (req, res) => {
 
 router.get('/postad', async (req, res) => {
   try {
-    res.render('postAd');
+    res.render('postAd', );
   } catch (err) {
     res.status(500).json(err);
   }
