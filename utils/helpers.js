@@ -1,3 +1,5 @@
+const Handlebars = require('handlebars');
+
 module.exports = {
   format_date: (date) => {
     // Format date as MM/DD/YYYY
@@ -19,4 +21,10 @@ module.exports = {
       return `<span for="img" aria-label="gear">⚙️</span>`;
     }
   },
+
+  json: () => {
+    Handlebars.registerHelper('toJSON', (object) => {
+    return new Handlebars(JSON.stringify(object));
+  })
+},
 };
