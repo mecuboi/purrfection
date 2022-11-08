@@ -7,3 +7,7 @@ router.use('/', homeRoutes);
 router.use('/api', apiRoutes);
 
 module.exports = router;
+
+router.get('*', (req, res) => {
+    res.redirect('/404')
+  });
