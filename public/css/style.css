@@ -23,3 +23,7 @@ ul li:hover ul.dropdown-menu {
     display: block;
     /* Display the dropdown */
 }
+
+.adList {
+    margin-bottom: 1cm;
+}
