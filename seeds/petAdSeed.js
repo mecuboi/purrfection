@@ -21,7 +21,7 @@ for (let i = 0; i <= 11; i++) {
         seller_id: 1   //References user id
     };
     //Add an additional property, as dogAdData needs to be initialised before being able to call its properties
-    dogAdData.description = `${dogAdData.name} is a very very ${randomDescription()} dog.`
+    dogAdData.description = `${dogAdData.name} is a very very ${randomDescription().toLowerCase()} dog.`
     
     //convert into array and sort alphabetically
     //then convert back into an object
@@ -47,7 +47,7 @@ for (let i = 0; i <= 11; i++) {
         seller_id: 1    //References user id
     };
     //Add an additional property, as dogAdData needs to be initialised before being able to call its properties
-    catAdData.description = `${catAdData.name} is a very very ${randomDescription()} cat.`
+    catAdData.description = `${catAdData.name} is a very very ${randomDescription().toLowerCase()} cat.`
     
     //convert into array and sort alphabetically
     //then convert back into an object
@@ -73,7 +73,7 @@ for (let i = 0; i <= 11; i++) {
         seller_id: 1   //References user id
     };
     //Add an additional property, as dogAdData needs to be initialised before being able to call its properties
-    smallAdData.description = `${smallAdData.name} is a very very ${randomDescription()} rabbit.`
+    smallAdData.description = `${smallAdData.name} is a very very ${randomDescription().toLowerCase()} rabbit.`
     
     // convert into array and sort alphabetically
     // then convert back into an object
