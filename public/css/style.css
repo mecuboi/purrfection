@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,7 +9,6 @@
 }
 
 
->>>>>>> 5259c74b520694a0458e3240afbe48cbc16aa56d
 .adList {
     margin: 1cm;
 }
@@ -25,4 +22,8 @@ body {
 ul li:hover ul.dropdown-menu {
     display: block;
     /* Display the dropdown */
+}
+
+.adList {
+    margin-bottom: 1cm;
 }
