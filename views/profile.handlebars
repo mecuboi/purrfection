@@ -2,123 +2,79 @@
 <div class="container-fill mx-auto mb-5 py-5 text-xl bg-gradient-to-r from-orange-200 to-orange-300">
     <h2 class="text-center transform transition duration-500 hover:scale-125 hover:text-neutral-50">Welcome, <strong>{{user.first_name}}!</strong></h2>
 </div>
-
-{{!-- <div class="row mt-4">
-  <div class="col-md-6">
-    <h3>Create a New Project:</h3>
-
-    <form class="form new-project-form">
-      <div class="form-group">
-        <label for="project-name">project name:</label>
-        <input class="form-input" type="text" id="project-name" name="project-name" />
-      </div>
-      <div class="form-group">
-        <label for="project-funding">needed funding ($):</label>
-        <input class="form-input" type="number" id="project-funding" name="project-funding" />
-      </div>
-      <div class="form-group">
-        <label for="project-desc">description:</label>
-        <textarea class="form-input" id="project-desc" name="project-desc"></textarea>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
-      </div>
-    </form>
-  </div>
-
-  {{#if projects.length}}
-  <div class="col-md-6 project-list">
-    <h3>Current Projects:</h3>
-
-    {{#each projects as |project|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/project/{{project.id}}">{{project.name}}</a></h4>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{project.id}}">DELETE</button>
-      </div>
-    </div>
-    {{/each}}
-  </div>
-  {{/if}}
-</div> --}}
 {{!-- Parent div for profile page elements classes containing 'md:' indicate elements shown differently for larger screens --}}
 <div id="hero" class="flex flex-row justify-around pb-5 md:grid md:grid-cols-2 gap-1 ">
+  
   <div class="w-full  bg-gradient-to-b from-orange-200 to bg-orange-300 rounded-lg border border-yellow-200 shadow-md">
-      <div class="flex justify-end px-4 pt-4">
-          {{!-- <button id="dropdown-btn" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
-              <span class="sr-only">Open dropdown</span>
-              <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
-          </button> --}}
-          <!-- Dropdown menu -->
-          {{!-- <div id="dropdown" class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 749.6px, 0px);" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
-              <ul class="py-1" aria-labelledby="dropdown-btn">
-              <li>
-                  <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
-              </li>
-              <li>
-                  <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Export Data</a>
-              </li>
-              <li>
-                  <a href="#" class="block py-2 px-4 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
-              </li>
-              </ul>
-          </div> --}}
-          <button id="dropdownMenuIconHorizontalButton" data-dropdown-toggle="dropdownDotsHorizontal" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button"> 
-  <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
-</button>
 
-<!-- Dropdown menu -->
-<div id="dropdownDotsHorizontal" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow">
-    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
-      <li>
-        <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-gray-600 hover:text-gray-200">Edit</a>
-      </li>
-      <li>
-        <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-gray-600 hover:text-gray-200">Settings</a>
-      </li>
-      <li>
-        <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-gray-600 hover:text-gray-200">Surprise</a>
-      </li>
-    </ul>
-    <div class="py-1">
-      <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Separated link</a>
-    </div>
-</div>
+{{!-- Dropdown menu       --}}
+      <div class="flex justify-end px-4 pt-4">
+          <button id="dropdownMenuIconHorizontalButton" data-dropdown-toggle="dropdownDotsHorizontal" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button"> 
+              <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+          </button>
+          <div id="dropdownDotsHorizontal" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow">
+              <ul class=" text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
+                <li>
+                  <button id="edit-user-btn" class="block w-full py-2 px-3 text-gray-700 hover:bg-gray-400 hover:text-white">Edit</button>
+                </li>
+                <li>
+                  <button id="surprise-user-btn" class="block w-full py-2 px-3 text-gray-700 hover:bg-gray-400 hover:text-white">Surprise</button>
+                </li>
+              </ul>
+          </div>
       </div>
-      <div class="flex flex-col items-center pb-10">
-          {{!-- <img class="mb-3 w-24 h-24 rounded-full shadow-lg" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image"> --}}
+
+{{!-- User Menu --}}
+      <div class="flex flex-col items-center pb-1">
+          <img class="mb-3 w-36 h-36 rounded-lg shadow-lg" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="user profile photo">
           <h5 class="mb-1 text-xl font-medium">{{user.first_name}} {{user.last_name}}</h5>
-          <a href='tel:{{user.phone_number}}'><span class="text-sm text-gray-500">{{user.phone_number}}</span></a>
-          <a href='mailto:{{user.email}}'><span class="text-sm text-gray-500">{{user.email}}</span></a>
-          <span class="text-sm text-gray-500">{{user.address}}</span>
-          {{!-- <div class="flex mt-4 space-x-3 md:mt-6">
-              <a href="#" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">Add friend</a>
-              <a href="#" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200">Message</a>
-          </div> --}}
+          <a href='tel:{{user.phone_number}}'><span class="text-sm text-gray-500  my-3">{{user.phone_number}}</span></a>
+          <a href='mailto:{{user.email}}'><span class="text-sm text-gray-500  my-3">{{user.email}}</span></a>
+          <span class="text-sm text-gray-500  my-3">{{user.address}}</span>
       </div>
   </div>
 
- {{!-- {{#each petAds}} --}}
   <div id="favourite-ad" class="flex flex-row w-full bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 ">
   <div id="favourite-ad-title" class="container bg-orange-300">
     <h2 class="text-center"> My favourites: </h2>
   </div>
-  <a href="/petads/{{favouritePetAds.id}}" target="_blank"
+ {{#each user.pet_ads as |favourites|}}
+ {{!-- TODO carousel this --}}
+    <a href="/petads/{{favourites.id}}" target="_blank"
+      class="adList">
+        <img class="object-cover w-full h-auto rounded-lg md:h-auto md:w-auto"
+          src="{{favourites.image}}" alt="{{favourites.name}}">
+        <div class="flex flex-col justify-between p-4 leading-normal">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+          {{favourites.name}} <span class="italic text-stone-400">({{favourites.breed}})</span>
+          </h5>
+          <p class="mb-3 font-normal text-gray-700 no-underline">{{favourites.description}}</p>
+        </div>
+    </a>
+{{/each}}
+</div>
+</div>
+
+<div id="user-ad-title" class="container bg-orange-300">
+    <h2 class="text-center"> My Ads: </h2>
+  </div>
+ {{#each userPetAds as |myAds|}}
+  <div id="my-ad" class="flex flex-row mx-auto w-full pb-2 bg-white rounded-lg border shadow-md md:container">
+  <a href="/petads/{{myAds.id}}" target="_blank"
   class="adList">
-  <img class="object-cover w-full h-auto rounded-lg md:h-auto md:w-auto"
-    src="{{favouritePetAds.image}}" alt="{{favouritePetAds.name}}">
+  <img class="object-cover w-1/2 h-1/2 rounded-lg md:h-auto md:w-auto"
+    src="{{myAds.image}}" alt="{{myAds.name}}"></a>
   <div class="flex flex-col justify-between p-4 leading-normal">
     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-    {{favouritePetAds.name}} <span class="italic text-stone-400">({{favouritePetAds.breed}})</span>
+    {{myAds.name}} <span class="italic text-stone-400">({{myAds.breed}})</span>
     </h5>
-    <p class="mb-3 font-normal text-gray-700">{{favouritePetAds.description}}</p>
+    <p id="my-ad-price">${{myAds.price}}</p>
+    <p id="my-ad-age">{{myAds.age}} years old</p>
+    <p class="mb-3 font-normal text-gray-700">{{myAds.description}}</p>
+    <p id="my-ad-category">Type: {{category_name myAds.category_id}}</p>
   </div>
-</a>
 </div>
-{{!-- {{/#each}} --}}
-</div>
+{{/each}}
 
 
 

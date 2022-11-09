@@ -7,7 +7,6 @@ const { randomPriceGenerator, randomAgeGenerator, randomDescription } = require(
 const petAdsArray = [];
 //generate 10 dogs
 for (let i = 0; i <= 11; i++) {
-   const counter = i;
     const dogAdData = {
         name: faker.name.firstName(),
         breed: faker.animal.dog(),
@@ -33,7 +32,6 @@ for (let i = 0; i <= 11; i++) {
 }
 //generate 10 cats
 for (let i = 0; i <= 11; i++) {
-   const counter = i
     const catAdData = {
         name: faker.name.firstName(),
         breed: faker.animal.cat(),
@@ -59,7 +57,6 @@ for (let i = 0; i <= 11; i++) {
 }
 //generate 10 rabbits
 for (let i = 0; i <= 11; i++) {
-   const counter = i
     const smallAdData = {
         name: faker.name.firstName(),
         breed: faker.animal.rabbit(),
