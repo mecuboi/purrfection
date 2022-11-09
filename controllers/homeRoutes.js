@@ -79,7 +79,7 @@ router.get('/profile/:id', async (req, res) => {
       include: [{ model: PetAds, through: SavedPetsTag }],
       // limit: 5
     });
-    //TODO fix seed for seller_id
+
     //get petAds data where petAds.seller_id matches User.id || req.params.id
     const userPetAdData = await PetAds.findAll({
       where: {
@@ -88,15 +88,16 @@ router.get('/profile/:id', async (req, res) => {
     });
 
     const user = userData.get({ plain: true });
-    const userPetAd = userPetAdData.map(data => data.get({ plain: true }));
+    const userPetAds = userPetAdData.map(data => data.get({ plain: true }));
 // user.pet_ads comes up as an array of objects, thus destructing is needed
     const [favouritePetAds] = user.pet_ads
 
-    console.log("req.params.id", req.params.id)
-    console.log("\nuserPetAd\n", userPetAd)
+    // console.log("req.params.id", req.params.id)
+    // console.log("\nuserPetAd\n", userPetAds)
 
     res.render('profile', {
       user,
+      userPetAds,
       favouritePetAds,
       logged_in: req.session.logged_in
     });

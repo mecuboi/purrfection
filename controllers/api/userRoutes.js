@@ -7,15 +7,14 @@ router.get('/', async (req, res) => {
     try {
         const userData = await User.findAll({
           include: [
-            { model: PetAds, through: SavedPetsTag }
+            { model: PetAds, through: SavedPetsTag },
           ]
-        })
-        
+        });
+
         const users = userData.map((user) => 
-            user.get({ plain: true })
-            );
-
-
+        user.get({ plain: true })
+        );
+        
             res.status(200).json(users)
 
     } catch (err) {
@@ -40,7 +39,6 @@ router.get('/:id', async (req, res) => {
 });
 
 //post routes
-
 router.post('/', async (req, res) => {
     try {
         const postUser = await User.create({
@@ -62,7 +60,6 @@ router.post('/', async (req, res) => {
 });
 
 //Update routes
-
 router.put('/:id', async (req, res) => {
     try {
         const updateUser = await User.update({
