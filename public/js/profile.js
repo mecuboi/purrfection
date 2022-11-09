@@ -1,11 +1,16 @@
-const dropdownBtn = document.querySelector('#dropdown-btn');
-const dropdownMenu = document.querySelector('#dropdown');
+const editUserBtn = document.querySelector('#edit-user-btn');
+const userCard = document.querySelector('#user-card');
+const dropdownMenu = document.querySelector('#dropdown-menu');
+const userInfo = document.querySelector('#user-info');
 
+const renderEditUserCard = () => {
+  dropdownMenu.classList.add('hidden');
+  userInfo.classList.add('hidden');
 
-dropdownBtn.addEventListener('click', () => {
-  dropdownMenu.classList.remove('hidden')
-})
+console.log('edit button pressed')
+}
 
+editUserBtn.addEventListener('click', renderEditUserCard());
 // const newFormHandler = async (event) => {
 //   event.preventDefault();
 

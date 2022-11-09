@@ -4,11 +4,11 @@
 </div>
 {{!-- Parent div for profile page elements classes containing 'md:' indicate elements shown differently for larger screens --}}
 <div id="hero" class="flex flex-row justify-around pb-5 md:grid md:grid-cols-2 gap-1 ">
-  
-  <div class="w-full  bg-gradient-to-b from-orange-200 to bg-orange-300 rounded-lg border border-yellow-200 shadow-md">
+{{!-- User Card --}}
+  <div id="user-card" class="w-full bg-gradient-to-b from-orange-200 to bg-orange-300 rounded-lg border border-yellow-200 shadow-md">
 
 {{!-- Dropdown menu       --}}
-      <div class="flex justify-end px-4 pt-4">
+      <div id="dropdown-menu" class="flex justify-end px-4 pt-4">
           <button id="dropdownMenuIconHorizontalButton" data-dropdown-toggle="dropdownDotsHorizontal" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button"> 
               <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
           </button>
@@ -24,25 +24,25 @@
           </div>
       </div>
 
-{{!-- User Menu --}}
-      <div class="flex flex-col items-center pb-1">
+      <div id="user-info" class="flex flex-col items-center pb-1">
           <img class="mb-3 w-36 h-36 rounded-lg shadow-lg" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="user profile photo">
-          <h5 class="mb-1 text-xl font-medium">{{user.first_name}} {{user.last_name}}</h5>
-          <a href='tel:{{user.phone_number}}'><span class="text-sm text-gray-500  my-3">{{user.phone_number}}</span></a>
-          <a href='mailto:{{user.email}}'><span class="text-sm text-gray-500  my-3">{{user.email}}</span></a>
-          <span class="text-sm text-gray-500  my-3">{{user.address}}</span>
+          <h5 class="mb-1 text-xl md:text-2xl font-medium">{{user.first_name}} {{user.last_name}}</h5>
+          <hr class="px-5 py-3 border-slate-600">
+          <a href='tel:{{user.phone_number}}'><span class="text-lg md:text-xl text-gray-500  my-3">{{user.phone_number}}</span></a>
+          <a href='mailto:{{user.email}}'><span class="text-lg md:text-xl text-gray-500  my-3">{{user.email}}</span></a>
+          <span class="text-lg md:text-xl text-gray-500 my-3">{{user.address}}</span>
       </div>
   </div>
 
-  <div id="favourite-ad" class="flex flex-row w-full bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 ">
+  <div id="favourite-ad" class="flex flex-row w-full bg-white rounded-lg border shadow-md md:flex-row md:container hover:bg-gray-100 ">
   <div id="favourite-ad-title" class="container bg-orange-300">
-    <h2 class="text-center"> My favourites: </h2>
+    <h2 class="text-center text-xl"> My favourites: </h2>
   </div>
  {{#each user.pet_ads as |favourites|}}
  {{!-- TODO carousel this --}}
     <a href="/petads/{{favourites.id}}" target="_blank"
       class="adList">
-        <img class="object-cover w-full h-auto rounded-lg md:h-auto md:w-auto"
+        <img class="object-cover w-auto h-auto rounded-lg md:h-auto md:w-auto"
           src="{{favourites.image}}" alt="{{favourites.name}}">
         <div class="flex flex-col justify-between p-4 leading-normal">
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
@@ -56,13 +56,13 @@
 </div>
 
 <div id="user-ad-title" class="container bg-orange-300">
-    <h2 class="text-center"> My Ads: </h2>
+    <h2 class="text-center text-xl mx-auto"> My Ads: </h2>
   </div>
  {{#each userPetAds as |myAds|}}
-  <div id="my-ad" class="flex flex-row mx-auto w-full pb-2 bg-white rounded-lg border shadow-md md:container">
+  <div id="my-ad" class="flex flex-row mx-auto w-full pb-2 bg-white rounded-lg border shadow-md ">
   <a href="/petads/{{myAds.id}}" target="_blank"
   class="adList">
-  <img class="object-cover w-1/2 h-1/2 rounded-lg md:h-auto md:w-auto"
+  <img class="object-cover w-auto h-auto rounded-lg md:h-auto md:w-auto"
     src="{{myAds.image}}" alt="{{myAds.name}}"></a>
   <div class="flex flex-col justify-between p-4 leading-normal">
     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
