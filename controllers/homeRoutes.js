@@ -71,7 +71,7 @@ router.get('/petads/:id', async (req, res) => {
 });
 
 router.get('/profile', async (req, res) => {
-  res.redirect(`/profile/${req.session.userId}`)
+  res.redirect(`/profile/${req.session.id}`)
 });
 
 //add withAuth
