@@ -1,0 +1,72 @@
+{{!-- User Card --}}
+  <div id="user-card" class="flex flex-row justify-center items-center mb-5 bg-transparent">
+      <div id="user-info" class="flex flex-col items-center bg-orange-100 pb-1 p-5 px-20 border-4 border-double border-orange-300 rounded-lg shadow-xl">
+        {{!-- Form --}}
+        <form id="update-user-form">
+          <label for ="first_name" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+            First Name
+          </label>
+            <div class="mt-1">
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              id="first_name" type="text" placeholder="{{user.first_name}}">
+            </div>
+
+          <hr class="px-5 py-1 border-slate-600">
+
+          <label for ="last_name" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Last Name
+          </label>
+            <div class="mt-1">
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              id="last_name" type="text" placeholder="{{user.last_name}}">
+            </div>
+
+            <hr class="px-5 py-1 border-slate-600">
+
+          <label for ="phone_number" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Phone Number
+          </label>
+            <div class="mt-1">
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              id="phone_number" type="text" placeholder="{{user.phone_number}}">
+            </div>
+
+            <hr class="px-5 py-1 border-slate-600">
+
+          <label for ="address" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Address
+          </label>
+            <div class="mt-1">
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              id="address" type="text" placeholder="{{user.address}}">
+            </div>
+
+            <hr class="px-5 py-1 border-slate-600">
+
+
+          <label for ="password" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Password
+          </label>
+            <div class="mt-1">
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              id="password" type="password" name="password">
+            </div>
+            {{!-- Submit Button --}}
+          <div class= "flex flex-col px-4 py-3 text-center sm:px-6">
+                <button id="update-btn"
+                    class="my-2 transition duration-500 bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit">
+                    Update My Info
+                </button>
+                <button id="reset-btn" class="my-2 transition duration-500 bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Reset
+                </button>
+          </div>
+    {{!-- TODO for testing purposes--}}
+    <p id="user-id" class="hidden">{{user_id}}</p>
+      </div>
+      </form>
+  </div>
+
+  <script src="./js/profile.js"></script>
+

@@ -70,6 +70,9 @@ router.get('/petads/:id', async (req, res) => {
   }
 });
 
+router.get('/profile', async (req, res) => {
+  res.redirect(`/profile/${req.session.userId}`)
+});
 
 //add withAuth
 router.get('/profile/:id', async (req, res) => {
@@ -80,19 +83,55 @@ router.get('/profile/:id', async (req, res) => {
       // limit: 5
     });
 
+    //get petAds data where petAds.seller_id matches User.id || req.params.id
+    const userPetAdData = await PetAds.findAll({
+      where: {
+        seller_id: req.params.id
+      }
+    });
+
     const user = userData.get({ plain: true });
-// user.pet_ads comes up as an array of objects, thus destructing is needed
-    const [favouritePetAds] = user.pet_ads
+    const userPetAds = userPetAdData.map(data => data.get({ plain: true }));
+
 
     res.render('profile', {
       user,
-      favouritePetAds,
-      logged_in: req.session.logged_in
+      userPetAds,
+      // favouritePetAds,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+//TODO Test
+router.get('/updateProfile', async (req, res) => {
+  try {
+
+    const userData = await User.findOne({
+      where: {
+        id: 4
+        //TODO replace with req.session.id once done test,
+      }
+    })
+    
+    if(!userData) {
+      res.status(404).json({ message: "User not found!"})
+    }
+
+    const user = userData.get({ plain: true });
+
+  res.render('updateProfile', {
+    user,
+    user_id: 4,
+    //TODO replace with req.session.id nce done test,
+  })
+} catch(err) {
+  res.status(500).json(err);
+}
+});
+
 
 router.get('/categories/:id', async (req, res) => {
   try {
@@ -106,7 +145,7 @@ router.get('/categories/:id', async (req, res) => {
 
     // res.json(category)
 
-    res.render('adList', {
+    res.render('category', {
       category,
       logged_in: req.session.logged_in
     });
@@ -133,17 +172,13 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/404', (req, res) => {
-  res.render('404')
-});
-
 router.get('/aboutus', (req, res) => {
   res.render('aboutUs');
 });
 
+router.get('/404', (req, res) => {
+  res.render('404')
+});
 
-// router.get('*', (req, res) => {
-//   res.redirect('/404')
-// });
 
 module.exports = router;

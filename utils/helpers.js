@@ -1,3 +1,4 @@
+const e = require('express');
 const Handlebars = require('handlebars');
 
 module.exports = {
@@ -22,9 +23,16 @@ module.exports = {
     }
   },
 
-  json: () => {
-    Handlebars.registerHelper('toJSON', (object) => {
-    return new Handlebars(JSON.stringify(object));
-  })
-},
-};
+  category_name: (num) => {
+    if (num === 1) {
+      return 'Dogs 🐶'
+    } else if (num === 2) {
+      return 'Cats 🐈'
+    } else if (num === 3) {
+      return 'Small Animals 🐇'
+    } else {
+      return
+    }
+  },
+}
+

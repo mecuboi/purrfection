@@ -18,8 +18,6 @@ for (let i = 0; i <= 11; i++) {
         //  role: randomUserRole(),
          //generates random real address
          address: faker.address.streetAddress(true),
-         //A total of 30 pets, so saved_pets_id will pick randomly from those 30
-        //  saved_petAds_id: 1
      };
 
     usersArray.push(userData);
