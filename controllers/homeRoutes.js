@@ -83,19 +83,55 @@ router.get('/profile/:id', async (req, res) => {
       // limit: 5
     });
 
+    //get petAds data where petAds.seller_id matches User.id || req.params.id
+    const userPetAdData = await PetAds.findAll({
+      where: {
+        seller_id: req.params.id
+      }
+    });
+
     const user = userData.get({ plain: true });
-// user.pet_ads comes up as an array of objects, thus destructing is needed
-    const [favouritePetAds] = user.pet_ads
+    const userPetAds = userPetAdData.map(data => data.get({ plain: true }));
+
 
     res.render('profile', {
       user,
-      favouritePetAds,
-      logged_in: req.session.logged_in
+      userPetAds,
+      // favouritePetAds,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+//TODO Test
+router.get('/updateProfile', async (req, res) => {
+  try {
+
+    const userData = await User.findOne({
+      where: {
+        id: 4
+        //TODO replace with req.session.id once done test,
+      }
+    })
+    
+    if(!userData) {
+      res.status(404).json({ message: "User not found!"})
+    }
+
+    const user = userData.get({ plain: true });
+
+  res.render('updateProfile', {
+    user,
+    user_id: 4,
+    //TODO replace with req.session.id nce done test,
+  })
+} catch(err) {
+  res.status(500).json(err);
+}
+});
+
 
 router.get('/categories/:id', async (req, res) => {
   try {

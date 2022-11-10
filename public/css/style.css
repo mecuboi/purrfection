@@ -27,3 +27,7 @@ ul li:hover ul.dropdown-menu {
 .adList {
     margin-bottom: 1cm;
 }
+
+.custom-transparent-bg {
+    background-color: rgba(205, 194, 194, 0.059);
+}
