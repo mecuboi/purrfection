@@ -27,3 +27,15 @@ ul li:hover ul.dropdown-menu {
 .adList {
     margin-bottom: 1cm;
 }
+
+.footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 10px;
+    width: 100%;
+}
+
+.navbar {
+    padding: 1em;
+}
