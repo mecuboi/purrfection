@@ -46,7 +46,7 @@
             clip-rule="evenodd"></path>
         </svg>
       </button>
-      {{#if logged_in}}
+      {{#if activeUser}}
       <p class="p-2 text-blue-500 font-bold">Hi {{activeUser.first_name}}!</p>
       {{/if}}
       <div class="hidden w-full md:block md:w-auto" id="mobile-menu">

@@ -8,10 +8,10 @@
     through Purrfection!</h2>
   <!-- Most Recent Ads Posted -->
   <div class="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md col-span-12 mx-auto my-4">
-    <a href="#">
+    <a href="/petAds/{{pet.id}}">
       <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900">Recently added</h5>
     </a>
-    <img class="md:rounded-none md:rounded-l-lg md:w-72 mb-4 object-center" src="{{pet.image}}" alt="">
+    <img class="md:rounded-lg md:w-72 mb-4 object-center" src="{{pet.image}}" alt="">
     <p class="mb-3 text-xl font-normal text-gray-700">{{pet.name}} ({{pet.breed}})</p>
     <p class="mb-3 font-normal text-gray-700">Age: {{pet.age}}</p>
     <p class="mb-3 text-sm font-normal text-gray-700">{{pet.description}}</p>

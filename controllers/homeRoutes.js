@@ -166,7 +166,9 @@ router.get('/categories/:id', async (req, res) => {
 
 router.get('/postad', async (req, res) => {
   try {
-    res.render('postAd', );
+    res.render('postAd', {
+      logged_in: req.session.logged_in
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -183,7 +185,9 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/aboutus', (req, res) => {
-  res.render('aboutUs');
+  res.render('aboutUs', {
+    logged_in: req.session.logged_in
+  });
 });
 
 router.get('/404', (req, res) => {
