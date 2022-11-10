@@ -70,6 +70,9 @@ router.get('/petads/:id', async (req, res) => {
   }
 });
 
+router.get('/profile', async (req, res) => {
+  res.redirect(`/profile/${req.session.userId}`)
+});
 
 //add withAuth
 router.get('/profile/:id', async (req, res) => {
@@ -142,7 +145,7 @@ router.get('/categories/:id', async (req, res) => {
 
     // res.json(category)
 
-    res.render('adList', {
+    res.render('category', {
       category,
       logged_in: req.session.logged_in
     });
@@ -169,17 +172,13 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/404', (req, res) => {
-  res.render('404')
-});
-
 router.get('/aboutus', (req, res) => {
   res.render('aboutUs');
 });
 
+router.get('/404', (req, res) => {
+  res.render('404')
+});
 
-// router.get('*', (req, res) => {
-//   res.redirect('/404')
-// });
 
 module.exports = router;
