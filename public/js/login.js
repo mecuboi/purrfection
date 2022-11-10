@@ -24,23 +24,28 @@ const loginFormHandler = async (event) => {
 const signupFormHandler = async (event) => {
   event.preventDefault();
 
-  const firstName = document.querySelector('#grid-first-name').value.trim();
-  const lastName = document.querySelector('#grid-last-name').value.trim();
-  const email = document.querySelector('#grid-email').value.trim();
+  const first_name = document.querySelector('#user-first-name').value.trim();
+  const last_name = document.querySelector('#user-last-name').value.trim();
+  const email = document.querySelector('#user-email-address').value.trim();
   const password = document.querySelector('#user-password').value.trim();
   const address = document.querySelector('#user-address').value.trim();
-  const phoneNumber = document.querySelector('#user-phone-number').value.trim();
+  const phone_number = document.querySelector('#user-phone-number').value.trim();
 
 
-  if (firstName && email && password && lastName && address && phoneNumber) {
+
+  if (first_name && email && password && last_name && address && phone_number) {
+
+
     const response = await fetch('/api/users', {
       method: 'POST',
-      body: JSON.stringify({ firstName, lastName, email, phoneNumber, password, address }),
+      body: JSON.stringify({ first_name, last_name, email, phone_number, password, address }),
       headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
       document.location.replace('/');
+
+
     } else {
       alert(response.statusText);
     }
