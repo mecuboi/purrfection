@@ -89,22 +89,19 @@ router.get('/profile/:id', async (req, res) => {
 
     const user = userData.get({ plain: true });
     const userPetAds = userPetAdData.map(data => data.get({ plain: true }));
-// user.pet_ads comes up as an array of objects, thus destructing is needed
-    // const favouritePetAds = user.pet_ads
 
-    // console.log("req.params.id", req.params.id)
-    // console.log("\nuserPetAd\n", userAds)
 
     res.render('profile', {
       user,
       userPetAds,
       // favouritePetAds,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
 
 router.get('/categories/:id', async (req, res) => {
   try {
@@ -153,6 +150,10 @@ router.get('/aboutus', (req, res) => {
   res.render('aboutUs');
 });
 
+//TODO Test
+router.get('/updateProfile', (req, res) => {
+  res.render('updateProfile')
+})
 
 // router.get('*', (req, res) => {
 //   res.redirect('/404')
