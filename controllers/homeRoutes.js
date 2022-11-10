@@ -110,8 +110,9 @@ router.get('/updateProfile', async (req, res) => {
   try {
 
     const userData = await User.findOne({
+      //add exclude password
       where: {
-        id: 4
+        id: 5
         //TODO replace with req.session.id once done test,
       }
     })
@@ -124,8 +125,8 @@ router.get('/updateProfile', async (req, res) => {
 
   res.render('updateProfile', {
     user,
-    user_id: 4,
-    //TODO replace with req.session.id nce done test,
+    // user_id: 4,
+    //TODO replace with req.session.id once done test,
   })
 } catch(err) {
   res.status(500).json(err);

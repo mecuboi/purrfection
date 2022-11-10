@@ -1,3 +1,5 @@
+
+
 <body class="font-mono">
 <div class="container-fill mx-auto mb-5 py-5 text-xl bg-gradient-to-r from-orange-200 to-orange-300">
     <h2 class="text-center transform transition duration-500 hover:scale-125 hover:text-neutral-50">Welcome, <strong>{{user.first_name}}!</strong></h2>
@@ -8,11 +10,11 @@
   <div id="user-card" class="w-full bg-gradient-to-b from-orange-200 to bg-orange-300 rounded-lg border border-yellow-200 shadow-md">
 
 {{!-- Dropdown menu       --}}
-      <div id="dropdown-menu" class="flex justify-end px-4 pt-4">
-          <button id="dropdownMenuIconHorizontalButton" data-dropdown-toggle="dropdownDotsHorizontal" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button"> 
-              <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
-          </button>
-          <div id="dropdownDotsHorizontal" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow">
+      <div  class="flex justify-end px-4 pt-4">
+          <a href='/updateProfile' id="edit-user-btn" class="inline-block text-gray-500 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg text-sm p-1.5"> 
+             <img src="https://img.icons8.com/sf-regular-filled/36/null/edit-property.png"/>
+          </a>
+          {{!-- <div id="dropdownDotsHorizontal" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow">
               <ul class=" text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
                 <li>
                   <button id="edit-user-btn" class="block w-full py-2 px-3 text-gray-700 hover:bg-gray-400 hover:text-white">Edit</button>
@@ -21,7 +23,7 @@
                   <button id="surprise-user-btn" class="block w-full py-2 px-3 text-gray-700 hover:bg-gray-400 hover:text-white">Surprise</button>
                 </li>
               </ul>
-          </div>
+          </div> --}}
       </div>
 
       <div id="user-info" class="flex flex-col items-center pb-1">

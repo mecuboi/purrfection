@@ -34,7 +34,7 @@ const updateUserInfo = async (event) => {
       first_name: firstNameInput,
       last_name: lastNameInput,
       phone_number: phoneNumberInput,
-      password: passwordInput,
+      // password: passwordInput,
       address: addressInput
     }),
     headers: {

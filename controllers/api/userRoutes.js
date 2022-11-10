@@ -4,7 +4,6 @@ const withAuth = require('../../utils/auth');
 
 //get routes
 router.get('/', async (req, res) => {
-<<<<<<< HEAD
     try {
         const userData = await User.findAll({
           include: [
@@ -17,21 +16,6 @@ router.get('/', async (req, res) => {
         );
         
             res.status(200).json(users)
-=======
-  try {
-    const userData = await User.findAll({
-      include: [
-        { model: PetAds, through: SavedPetsTag }
-      ]
-    })
-
-    const users = userData.map((user) =>
-      user.get({ plain: true })
-    );
-
-
-    res.status(200).json(users)
->>>>>>> c7a2e38e8cb881543eb9d916cae85209714e9ad6
 
   } catch (err) {
     console.log(err);
@@ -81,7 +65,6 @@ router.post('/', async (req, res) => {
 
 //Update routes
 router.put('/:id', async (req, res) => {
-<<<<<<< HEAD
     try {
         const updateUser = await User.update({...req.body
             // first_name: req.body.first_name,
@@ -91,23 +74,8 @@ router.put('/:id', async (req, res) => {
             // password: req.body.password,
             // address: req.body.address,
             // saved_petAds_id: req.body.saved_petAds_id 
-=======
-  try {
-    const updateUser = await User.update({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      email: req.body.email,
-      phone_number: req.body.phone_number,
-      password: req.body.password,
-      address: req.body.address,
-      // saved_petAds_id: req.body.saved_petAds_id 
-    },
-      {
-        where: {
-          id: req.params.id,
->>>>>>> c7a2e38e8cb881543eb9d916cae85209714e9ad6
         },
-      });
+      );
 
     if (!updateUser) {
       return res.status(404).json({ message: 'No such user found!' });
