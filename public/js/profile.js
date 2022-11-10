@@ -13,6 +13,7 @@
 // editUserBtn.addEventListener('click', renderEditUserCard());
 
 const updateUserInfo = async (event) => {
+  try {
   event.preventDefault();
   console.log('update')
 
@@ -47,11 +48,13 @@ const updateUserInfo = async (event) => {
     } else {
       alert("Something went wrong")
     }
+  } catch (err) {
+    console.error(err);
+  };
 };
 
 const resetInfo = (event) => {
   event.preventDefault();
-  console.log('reset')
 
   const firstNameEl = document.querySelector('#first_name');
   const lastNameEl = document.querySelector('#last_name');
@@ -60,21 +63,21 @@ const resetInfo = (event) => {
   const addressEl = document.querySelector('#address');
   const passwordEl = document.querySelector('#password');
 
-  firstNameEl.innerHTML = "";
-  lastNameEl.innerHTML = "";
-  emailEl.innerHTML = "";
-  phoneNumberEl.innerHTML = "";
-  addressEl.innerHTML = "";
-  passwordEl.innerHTML = "";
+  firstNameEl.value = "";
+  lastNameEl.value = "";
+  emailEl.value = "";
+  phoneNumberEl.value = "";
+  addressEl.value = "";
+  passwordEl.value = "";
 
 };
 
 document
   .querySelector('#update-btn')
-  .addEventListener('submit', updateUserInfo(event));
+  .addEventListener('submit', updateUserInfo);
 
 document
   .querySelector('#reset-btn')
-  .addEventListener('click', resetInfo(event));
+  .addEventListener('click', resetInfo);
 
 
