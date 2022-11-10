@@ -13,27 +13,26 @@
 // editUserBtn.addEventListener('click', renderEditUserCard());
 
 const updateUserInfo = async (event) => {
-  try {
   event.preventDefault();
-  console.log('update')
-
+  console.log('hi')
+ 
+ 
   //TODO change to req.session.id
   const userId = document.querySelector('#user-id').textContent
 
   //input values
   const firstNameInput = document.querySelector('#first_name').value.trim();
   const lastNameInput = document.querySelector('#last_name').value.trim();
-  const emailInput = document.querySelector('#last_name').value.trim();
   const phoneNumberInput = document.querySelector('#phone_number').value.trim();
   const addressInput = document.querySelector('#address').value.trim();
   const passwordInput = document.querySelector('#password').value.trim();
 
+  if (firstNameInput || lastNameInput || emailInput || phoneNumberInput || addressInput || passwordInput) {
   const response = await fetch(`/api/users/${userId}`, {
     method: 'PUT',
     body: JSON.stringify({
       first_name: firstNameInput,
       last_name: lastNameInput,
-      email: emailInput,
       phone_number: phoneNumberInput,
       password: passwordInput,
       address: addressInput
@@ -48,12 +47,13 @@ const updateUserInfo = async (event) => {
     } else {
       alert("Something went wrong")
     }
-  } catch (err) {
-    console.error(err);
-  };
+  }
+
 };
 
 const resetInfo = (event) => {
+  console.log('hi')
+
   event.preventDefault();
 
   const firstNameEl = document.querySelector('#first_name');
@@ -73,7 +73,7 @@ const resetInfo = (event) => {
 };
 
 document
-  .querySelector('#update-btn')
+  .querySelector('#update-user-form')
   .addEventListener('submit', updateUserInfo);
 
 document

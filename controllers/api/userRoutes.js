@@ -62,13 +62,13 @@ router.post('/', async (req, res) => {
 //Update routes
 router.put('/:id', async (req, res) => {
     try {
-        const updateUser = await User.update({
-            first_name: req.body.first_name,
-            last_name: req.body.last_name,
-            email: req.body.email,
-            phone_number: req.body.phone_number,
-            password: req.body.password,
-            address: req.body.address,
+        const updateUser = await User.update({...req.body
+            // first_name: req.body.first_name,
+            // last_name: req.body.last_name,
+            // email: req.body.email,
+            // phone_number: req.body.phone_number,
+            // password: req.body.password,
+            // address: req.body.address,
             // saved_petAds_id: req.body.saved_petAds_id 
         },
         {
