@@ -10,6 +10,14 @@ router.get('/', async (req, res) => {
       include: [{ model: User }]
     });
 
+    // const userData = await User.findByPk({
+    //   where:{
+    //     id: req.session.id,
+    //   }
+    // });
+
+    // const user = userData.get({ plain: true })
+
     const petAds = petAdsData.map((pets) => pets.get({ plain: true }));
     const pet = petAds[0]
     // res.json(petAds)
@@ -142,9 +150,6 @@ router.get('/categories/:id', async (req, res) => {
     });
 
     const category = categoryData.get({ plain: true });
-
-
-    // res.json(category)
 
     res.render('category', {
       category,
