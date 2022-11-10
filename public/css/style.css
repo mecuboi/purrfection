@@ -18,6 +18,12 @@ body {
     position: relative;
 }
 
+body {
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+}
+
 body::after {
     content: '';
     display: block;
