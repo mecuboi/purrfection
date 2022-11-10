@@ -28,6 +28,18 @@ ul li:hover ul.dropdown-menu {
     margin-bottom: 1cm;
 }
 
+.footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 10px;
+    width: 100%;
+}
+
+.navbar {
+    padding: 1em;
+}
+
 .custom-transparent-bg {
     background-color: rgba(205, 194, 194, 0.059);
 }
