@@ -46,8 +46,8 @@
         </svg>
       </button>
       {{#if logged_in}}
-          <p>Hi {{user.first_name}}!</p>
-          {{/if}}
+      <p class="p-2 text-blue-500 font-bold">Hi {{activeUser.first_name}}!</p>
+      {{/if}}
       <div class="hidden w-full md:block md:w-auto" id="mobile-menu">
         <ul
           class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
@@ -95,7 +95,7 @@
               dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-orange-500 text-lg">Post
               an Ad</a>
           </li>
-          
+
           {{#if logged_in}}
           <li>
             <a href="/profile"

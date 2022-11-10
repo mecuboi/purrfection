@@ -9,21 +9,23 @@ router.get('/', async (req, res) => {
       limit: 1,
       include: [{ model: User }]
     });
-
-    // const userData = await User.findByPk({
-    //   where:{
-    //     id: req.session.id,
-    //   }
-    // });
-
-    // const user = userData.get({ plain: true })
-
     const petAds = petAdsData.map((pets) => pets.get({ plain: true }));
     const pet = petAds[0]
-    // res.json(petAds)
+
+var activeUser
+
+    if (req.session.userId) {
+    const userData = await User.findByPk(req.session.userId)
+
+    const user = userData.get({ plain: true })
+
+    activeUser = user
+    }
+
 
     res.render('homepage', {
       pet,
+      activeUser,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -80,7 +82,9 @@ router.get('/petads/:id', async (req, res) => {
 });
 
 router.get('/profile', async (req, res) => {
-  res.redirect(`/profile/${req.session.id}`)
+  const userId = req.session.userId
+  
+  res.redirect(`/profile/${userId}`)
 });
 
 //add withAuth
