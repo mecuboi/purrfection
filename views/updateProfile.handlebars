@@ -1,6 +1,6 @@
 {{!-- User Card --}}
   <div id="user-card" class="flex flex-row justify-center items-center mb-5 bg-transparent">
-      <div id="user-info" class="flex flex-col items-center bg-orange-300 pb-1 p-5 px-20 border-4 border-double border-orange-500 rounded-lg shadow-xl">
+      <div id="user-info" class="flex flex-col items-center bg-orange-100 pb-1 p-5 px-20 border-4 border-double border-orange-300 rounded-lg shadow-xl">
         {{!-- Form --}}
         <form id="update-user-form">
           <label for ="first_name" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -63,17 +63,20 @@
             </div>
             {{!-- Submit Button --}}
           <div class= "flex flex-col px-4 py-3 text-center sm:px-6">
-                <button
+                <button id="update-btn"
                     class="my-2 transition duration-500 bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit">
                     Update My Info
                 </button>
-                <button class="my-2 transition duration-500 bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    type="submit">
+                <button id="reset-btn" class="my-2 transition duration-500 bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Reset
                 </button>
           </div>
-         
+    {{!-- TODO for testing purposes--}}
+    <p id="user-id" class="hidden">{{user_id}}</p>
       </div>
       </form>
   </div>
+
+  <script src="./js/profile.js"></script>
+

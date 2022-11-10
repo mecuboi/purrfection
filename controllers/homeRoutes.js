@@ -102,6 +102,33 @@ router.get('/profile/:id', async (req, res) => {
   }
 });
 
+//TODO Test
+router.get('/updateProfile', async (req, res) => {
+  try {
+
+    const userData = await User.findOne({
+      where: {
+        id: 4
+        //TODO replace with req.session.id once done test,
+      }
+    })
+    
+    if(!userData) {
+      res.status(404).json({ message: "User not found!"})
+    }
+
+    const user = userData.get({ plain: true });
+
+  res.render('updateProfile', {
+    user,
+    user_id: 4,
+    //TODO replace with req.session.id nce done test,
+  })
+} catch(err) {
+  res.status(500).json(err);
+}
+});
+
 
 router.get('/categories/:id', async (req, res) => {
   try {
@@ -150,10 +177,6 @@ router.get('/aboutus', (req, res) => {
   res.render('aboutUs');
 });
 
-//TODO Test
-router.get('/updateProfile', (req, res) => {
-  res.render('updateProfile')
-})
 
 // router.get('*', (req, res) => {
 //   res.redirect('/404')
