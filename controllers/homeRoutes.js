@@ -10,11 +10,12 @@ router.get('/', async (req, res) => {
       include: [{ model: User }]
     });
 
-
-    // res.json(petAdsData[0])
+    const petAds = petAdsData.map((pets) => pets.get({ plain: true }));
+    const pet = petAds[0]
+    // res.json(petAds)
 
     res.render('homepage', {
-      petAdsData,
+      pet,
       logged_in: req.session.logged_in
     });
   } catch (err) {
