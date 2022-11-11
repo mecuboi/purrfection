@@ -38,6 +38,9 @@ const postAdFunction = async (event) => {
     }
   };
 
+
+
   document
   .querySelector('.post-ad-form')
   .addEventListener('submit', postAdFunction);
+

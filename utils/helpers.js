@@ -34,5 +34,22 @@ module.exports = {
       return
     }
   },
+
+  isUser: (profileUserId, reqUserId) => {
+    if (reqUserId !== profileUserId) {
+      return 
+    } else {
+    const gotoNext = (req, res, next) => {
+      next();
+    }
+    gotoNext();
+  }
+  },
+
+
+ ifEquals: (arg1, arg2, options) => {
+    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+},
+
 }
 

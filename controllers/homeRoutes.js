@@ -111,7 +111,7 @@ router.get('/profile/:id', async (req, res) => {
     res.render('profile', {
       user,
       userPetAds,
-      // favouritePetAds,
+      currentUserId: req.session.user_id,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
