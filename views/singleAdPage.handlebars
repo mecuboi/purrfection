@@ -12,11 +12,11 @@
       <p><strong>Price:</strong> $ {{petAds.price}}</p>
       <br>
       <h3 class="mb-4 text-2xl tracking-tight font-extrabold text-gray-900 dark:text-white">Seller Details</h3>
-      <p>{{petAds.user.first_name}} {{petAds.user.last_name}}</p>
+      <a href="/profile/{{petAds.user.id}}" class="text-orange-500 font-bold text-lg underline">{{petAds.user.first_name}} {{petAds.user.last_name}}</a>
       <p>{{petAds.user.email}}</p>
       <p>{{petAds.user.phone_number}}</p>
       <br>
-      <p class="mb-6 text-gray-500 md:text-lg">Ads Created: {{petAds.date_created}}</p>
+      <p class="mb-6 text-gray-500 text-sm">Ads Created: {{petAds.date_created}}</p>
     </div>
   </div>
 </section>
