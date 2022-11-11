@@ -11,7 +11,8 @@ const postAdFunction = async (event) => {
     const category= document.querySelector('#category').value.trim();
     const image = document.querySelector('#petImage')
 
-    if (petName) {
+    if (name && breed && description && age && price && category) {
+  
       const response = await fetch(`/api/petAds`, {
         method: 'POST',
         body: JSON.stringify({ 
@@ -32,7 +33,7 @@ const postAdFunction = async (event) => {
       if (response.ok) {
         document.location.replace('/');
       } else {
-        alert('Failed to post the ad');
+        alert('Please fill in the empty space');
       }
     }
   };

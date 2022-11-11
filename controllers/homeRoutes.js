@@ -9,12 +9,23 @@ router.get('/', async (req, res) => {
       limit: 1,
       include: [{ model: User }]
     });
+    const petAds = petAdsData.map((pets) => pets.get({ plain: true }));
+    const pet = petAds[0]
 
+var activeUser
 
-    // res.json(petAdsData[0])
+    if (req.session.userId) {
+    const userData = await User.findByPk(req.session.userId)
+
+    const user = userData.get({ plain: true })
+
+    activeUser = user
+    }
+
 
     res.render('homepage', {
-      petAdsData,
+      pet,
+      activeUser,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -71,7 +82,9 @@ router.get('/petads/:id', async (req, res) => {
 });
 
 router.get('/profile', async (req, res) => {
-  res.redirect(`/profile/${req.session.userId}`)
+  const userId = req.session.userId
+  
+  res.redirect(`/profile/${userId}`)
 });
 
 //add withAuth
@@ -143,9 +156,6 @@ router.get('/categories/:id', async (req, res) => {
 
     const category = categoryData.get({ plain: true });
 
-
-    // res.json(category)
-
     res.render('category', {
       category,
       logged_in: req.session.logged_in
@@ -157,8 +167,9 @@ router.get('/categories/:id', async (req, res) => {
 
 router.get('/postad', async (req, res) => {
   try {
-    //TODO TEST
-    res.render('postAd', );
+    res.render('postAd', {
+      logged_in: req.session.logged_in
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -175,7 +186,9 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/aboutus', (req, res) => {
-  res.render('aboutUs');
+  res.render('aboutUs', {
+    logged_in: req.session.logged_in
+  });
 });
 
 router.get('/404', (req, res) => {
