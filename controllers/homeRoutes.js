@@ -14,8 +14,8 @@ router.get('/', async (req, res) => {
 
 var activeUser
 
-    if (req.session.userId) {
-    const userData = await User.findByPk(req.session.userId)
+    if (req.session.user_id) {
+    const userData = await User.findByPk(req.session.user_id)
 
     const user = userData.get({ plain: true })
 
@@ -82,8 +82,9 @@ router.get('/petads/:id', async (req, res) => {
 });
 
 router.get('/profile', async (req, res) => {
-  const userId = req.session.userId
-  
+  const userId = req.session.user_id
+  console.log("\n\nhi\n\n", req.session.user_id)
+
   res.redirect(`/profile/${userId}`)
 });
 
@@ -125,8 +126,7 @@ router.get('/updateProfile', async (req, res) => {
     const userData = await User.findOne({
       //add exclude password
       where: {
-        id: 5
-        //TODO replace with req.session.id once done test,
+        id: req.session.user_id 
       }
     })
     
