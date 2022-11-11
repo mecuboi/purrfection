@@ -4,19 +4,18 @@ const withAuth = require('../../utils/auth');
 
 //get routes
 router.get('/', async (req, res) => {
-  try {
-    const userData = await User.findAll({
-      include: [
-        { model: PetAds, through: SavedPetsTag }
-      ]
-    })
+    try {
+        const userData = await User.findAll({
+          include: [
+            { model: PetAds, through: SavedPetsTag },
+          ]
+        });
 
-    const users = userData.map((user) =>
-      user.get({ plain: true })
-    );
-
-
-    res.status(200).json(users)
+        const users = userData.map((user) => 
+        user.get({ plain: true })
+        );
+        
+            res.status(200).json(users)
 
   } catch (err) {
     console.log(err);
@@ -80,7 +79,7 @@ router.put('/:id', async (req, res) => {
         where: {
           id: req.params.id,
         },
-      });
+  });
 
     if (!updateUser) {
       return res.status(404).json({ message: 'No such user found!' });
@@ -133,9 +132,9 @@ router.post('/login', async (req, res) => {
     }
     
     req.session.save(() => {
-      req.session.userId = userData.id;
+      req.session.user_id = userData.id;
       req.session.logged_in = true;
-      res.json({ user: userData, message: 'You are now logged in!', test: req.session.userId, see: req.session.logged_in});
+      res.json({ user: userData, message: 'You are now logged in!', test: req.session.user_id, see: req.session.logged_in});
     });
   } catch (err) {
     res.status(400).json(err);

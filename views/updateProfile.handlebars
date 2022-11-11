@@ -8,7 +8,7 @@
           </label>
             <div class="mt-1">
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="first_name" type="text" placeholder="{{user.first_name}}">
+              id="first_name" type="text" value="{{user.first_name}}">
             </div>
 
           <hr class="px-5 py-1 border-slate-600">
@@ -18,7 +18,7 @@
           </label>
             <div class="mt-1">
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="last_name" type="text" placeholder="{{user.last_name}}">
+              id="last_name" type="text" value="{{user.last_name}}">
             </div>
 
             <hr class="px-5 py-1 border-slate-600">
@@ -28,7 +28,7 @@
           </label>
             <div class="mt-1">
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="phone_number" type="text" placeholder="{{user.phone_number}}">
+              id="phone_number" type="text" value="{{user.phone_number}}">
             </div>
 
             <hr class="px-5 py-1 border-slate-600">
@@ -38,7 +38,7 @@
           </label>
             <div class="mt-1">
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="address" type="text" placeholder="{{user.address}}">
+              id="address" type="text" value="{{user.address}}">
             </div>
 
             <hr class="px-5 py-1 border-slate-600">
@@ -49,7 +49,7 @@
           </label>
             <div class="mt-1">
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="password" type="password" name="password">
+              id="password" type="text" name="password" value="{{user.password}}">
             </div>
             {{!-- Submit Button --}}
           <div class= "flex flex-col px-4 py-3 text-center sm:px-6">
@@ -63,7 +63,7 @@
                 </button>
           </div>
     {{!-- TODO for testing purposes--}}
-    <p id="user-id" class="hidden">{{user_id}}</p>
+    <p id="user-id" class="hidden">{{user.id}}</p>
       </div>
       </form>
   </div>

@@ -9,6 +9,7 @@ const postAdFunction = async (event) => {
     const price = document.querySelector('#price').value.trim();
     const microchip = document.querySelector('#microchip').value.trim();
     const category= document.querySelector('#category').value.trim();
+    // const image = document.querySelector('#petImage')
 
     if (name && breed && description && age && price && category) {
   
@@ -20,6 +21,7 @@ const postAdFunction = async (event) => {
             description, 
             age,
             price,
+            // image,
             microchip_number: microchip,
             category_id: category,
         }),
