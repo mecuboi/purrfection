@@ -17,29 +17,29 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    if (!req.files || Object.keys(req.files).length === 0) {
-      res.status(400).send('No files were uploaded.');
-      return;
-    }
+    // if (!req.files || Object.keys(req.files).length === 0) {
+    //   res.status(400).send('No files were uploaded.');
+    //   return;
+    // }
   
-      const images = req.files.petImage
+    //   const images = req.files.petImage
   
-      const uploadPath = `${__dirname}/../../public/images/${images.name}`;
+    //   const uploadPath = `${__dirname}/../../public/images/${images.name}`;
         
-      const uploadImage = images.mv(uploadPath)
+    //   const uploadImage = images.mv(uploadPath)
 
-      if (!uploadImage) {
-        res.status(500).json({ message: "Failed to upload image"})
-      }
+    //   if (!uploadImage) {
+    //     res.status(500).json({ message: "Failed to upload image"})
+    //   }
   
       // res.send('File uploaded to ' + uploadPath);
   
-      console.log('req.files >>>', req.files); 
+      // console.log('req.files >>>', req.files); 
 
       const newPetAds = await PetAds.create({
         ...req.body,
-        seller_id: req.session.userId,
-        image: uploadPath,
+        seller_id: req.session.user_id,
+        // image: uploadPath,
         // name: req.body.name,
         // breed: req.body.breed,
         // microchip_number: req.body.microchip,
