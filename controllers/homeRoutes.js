@@ -226,7 +226,7 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/aboutus', (req, res) => {
-  res.render('aboutUs', {
+  res.render('AboutUs', {
     logged_in: req.session.logged_in
   });
 });
