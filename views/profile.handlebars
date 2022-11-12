@@ -49,7 +49,7 @@ screens --}}
   <div id="favourite-ad"
     class="flex flex-row w-full bg-white rounded-lg border shadow-md md:flex-row md:container hover:bg-gray-100 ">
     <div id="favourite-ad-title" class="container bg-orange-300">
-      <h2 class="text-center text-xl"> My favourites: </h2>
+      <h2 class="text-center text-xl p-2"> My favourites: </h2>
     </div>
     {{#each user.pet_ads as |favourites|}}
     {{!-- TODO carousel this --}}
@@ -67,18 +67,18 @@ screens --}}
   </div>
 </div>
 
-<div id="user-ad-title" class="container bg-orange-300">
+<div id="user-ad-title" class=" bg-orange-300 w-full mb-4 p-2">
   <h2 class="text-center text-xl mx-auto"> My Ads: </h2>
 </div>
 {{#each userPetAds as |myAds|}}
-<div id="my-ad" class="flex flex-row mx-auto w-full pb-2 bg-white rounded-lg border shadow-md ">
-  <a href="/petads/{{myAds.id}}" target="_blank" class="adList">
-    <img class="object-cover w-auto h-auto rounded-lg md:h-auto md:w-auto" src="{{myAds.image}}"
+<div id="my-ad" class="flex flex-row mx-auto md:mx-3 pb-2 bg-white rounded-lg border shadow-md my-4">
+  <a href="/petads/{{myAds.id}}" target="_blank" class="w-auto h-auto rounded-lg md:w-1/2 ">
+    <img class="rounded-lg border shadow-md md:m-2 md:grow-0" src="{{myAds.image}}"
       alt="{{myAds.name}}"></a>
-  <div class="flex flex-col justify-between p-4 leading-normal">
-    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+  <div class="flex flex-col justify-between px-8 leading-normal">
+    <a href="/petads/{{myAds.id}}" target="_blank"><h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
       {{myAds.name}} <span class="italic text-stone-400">({{myAds.breed}})</span>
-    </h5>
+    </h5></a>
     <p id="my-ad-price">${{myAds.price}}</p>
     <p id="my-ad-age">{{myAds.age}} years old</p>
     <p class="mb-3 font-normal text-gray-700">{{myAds.description}}</p>
