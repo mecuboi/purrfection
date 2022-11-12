@@ -6,5 +6,5 @@ const searchFunction = (event) => {
     }
   
   document
-    .querySelector('.search-button')
-    .addEventListener('click', searchFunction);
+    .querySelector('#search-button')
+    .addEventListener('submit', searchFunction);

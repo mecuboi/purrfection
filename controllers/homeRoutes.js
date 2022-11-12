@@ -138,12 +138,21 @@ router.get('/profile/:id', withAuth, async (req, res) => {
     const user = userData.get({ plain: true });
     const userPetAds = userPetAdData.map(data => data.get({ plain: true }));
 
+    var correctUser = false;
+
+    if(req.session.user_id == req.params.id) {
+      correctUser = true
+    };
+
+
 
     res.render('profile', {
       user,
       userPetAds,
+      correctUser,
       // favouritePetAds,
       logged_in: req.session.logged_in,
+      user_id: req.session.user_id
     });
   } catch (err) {
     res.status(500).json(err);
