@@ -57,8 +57,35 @@ router.get('/petads', async (req, res) => {
   }
 });
 
+router.get('/petads/search/:breed', async (req, res) => {
+  try {
+    // Get all projects and JOIN with user data
+    const petAdsData = await PetAds.findAll({
+      include: { model: User },
+      where: {
+        breed: req.params.breed
+      }
+      
+    });
+
+
+    // Serialize data so the template can read it
+    const petAds = petAdsData.map((pets) => pets.get({ plain: true }));
+
+    // res.json(petAds)
+
+
+    res.render('adList', {
+      petAds,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 //Add withAuth
-router.get('/petads/:id', async (req, res) => {
+router.get('/petads/:id', withAuth, async (req, res) => {
   try {
     const petAdsData = await PetAds.findByPk(req.params.id, {
       include: { model: User }
@@ -89,7 +116,7 @@ router.get('/profile', async (req, res) => {
 });
 
 //add withAuth
-router.get('/profile/:id', async (req, res) => {
+router.get('/profile/:id', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.params.id, {
@@ -120,7 +147,7 @@ router.get('/profile/:id', async (req, res) => {
 });
 
 //TODO Test
-router.get('/updateProfile', async (req, res) => {
+router.get('/updateProfile', withAuth, async (req, res) => {
   try {
 
     const userData = await User.findOne({
@@ -165,7 +192,7 @@ router.get('/categories/:id', async (req, res) => {
   }
 });
 
-router.get('/postad', async (req, res) => {
+router.get('/postad', withAuth, async (req, res) => {
   try {
     res.render('postAd', {
       logged_in: req.session.logged_in
