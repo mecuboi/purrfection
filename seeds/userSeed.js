@@ -12,7 +12,7 @@ for (let i = 0; i <= 11; i++) {
          last_name: faker.name.lastName(),
          email: faker.internet.email(),
          //random Australia number
-         phone_number: faker.phone.number('+61 ### ### ###'),
+         phone_number: faker.phone.number('0 ### ### ###'),
          password: faker.internet.password(15, true),
          //role either set to buyer or seller
         //  role: randomUserRole(),
