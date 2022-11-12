@@ -1,38 +1,47 @@
+
+
 const uploadImage = async (event) => {
     event.preventDefault();
    
-   console.log(req.session)
-    //TODO change to req.session.user-id
-    const userId = req.session.user-id
-    // document.querySelector('#user-id').textContent
-  
+
+//     const image_input = document.querySelector("#image-input");
+// image_input.addEventListener("change", function() {
+//   const reader = new FileReader();
+//   reader.addEventListener("load", () => {
+//     const uploaded_image = reader.result;
+//     document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
+//   });
+//   reader.readAsDataURL(this.files[0]);
+// });
     //input values
-    const firstNameInput = document.querySelector('#first_name').value.trim();
-    const lastNameInput = document.querySelector('#last_name').value.trim();
-    const phoneNumberInput = document.querySelector('#phone_number').value.trim();
-    const addressInput = document.querySelector('#address').value.trim();
-    const passwordInput = document.querySelector('#password').value.trim();
+    const fileInput = document.querySelector('#petImage');
+
+    console.log("file", fileInput.value)
   
-    if (firstNameInput || lastNameInput || emailInput || phoneNumberInput || addressInput || passwordInput) {
-    const response = await fetch(`/api/users/${userId}`, {
-      method: 'PUT',
-      body: JSON.stringify({
-        first_name: firstNameInput,
-        last_name: lastNameInput,
-        phone_number: phoneNumberInput,
-        // password: passwordInput,
-        address: addressInput
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    });
+    // if (firstNameInput || lastNameInput || emailInput || phoneNumberInput || addressInput || passwordInput) {
+    // const response = await fetch(`/api/users/${userId}`, {
+    //   method: 'PUT',
+    //   body: JSON.stringify({
+    //     first_name: firstNameInput,
+    //     last_name: lastNameInput,
+    //     phone_number: phoneNumberInput,
+    //     // password: passwordInput,
+    //     address: addressInput
+    //   }),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    // });
   
-      if(response.ok) {
-        document.location.replace(`/profile/${userId}`)
-      } else {
-        alert("Something went wrong")
-      }
-    }
+    //   if(response.ok) {
+    //     document.location.replace(`/profile/${userId}`)
+    //   } else {
+    //     alert("Something went wrong")
+    //   }
+    // }
   
   };
+
+  document
+    .querySelector('#uploadForm')
+    .addEventListener('submit', uploadImage)

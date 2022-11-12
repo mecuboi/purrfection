@@ -1,15 +1,8 @@
-<html>
-	<body>
-		<form ref='uploadForm' 
-			id='uploadForm' 
-			action='/upload' 
-			method='post' 
-			encType="multipart/form-data">
-				<input type="file" name="petImage" />
-				<input type='submit' value='Upload' />
-		</form>		
+ <form id="upload" 
+    action="/single"
+    method="POST"
+    enctype="multipart/form-data">
+        <input type="file" name="image"/>
+        <button type="submit"> Submit </button>
+</form>
 
-<script src="./js/upload.js"></script>
-
-	</body>
-</html>

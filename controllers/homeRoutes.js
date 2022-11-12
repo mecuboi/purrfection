@@ -195,5 +195,9 @@ router.get('/404', (req, res) => {
   res.render('404')
 });
 
+router.get('/upload', (req, res) => {
+  res.render('upload')
+})
+
 
 module.exports = router;
