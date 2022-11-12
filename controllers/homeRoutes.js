@@ -196,8 +196,10 @@ router.get('/404', (req, res) => {
 });
 
 router.get('/upload', (req, res) => {
-  res.render('upload')
-})
+  res.render('upload', {
+    pet_ads_id: req.session.pet_id 
+  });
+});
 
 
 module.exports = router;

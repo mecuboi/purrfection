@@ -5,6 +5,8 @@ const exphbs = require('express-handlebars');
 const multer = require('multer');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
+const { PetAds } = require('./models/');
+
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -55,17 +57,36 @@ app.use(express.static(path.join(__dirname, 'public/images')));
 app.use(routes);
 
 //for uploading a single image.  Use upload.array('name', int(limit))
-app.post('/single', upload.single("image"), (req, res) => {
-    console.log(req.file);
-    // console.log("path",  req.file.destination + '/' + req.file.originalname)
-    const path = `${req.file.destination}/${req.file.originalname}`
-    
-    const newPath = path.slice(9)
-    const imageUrl = `./${newPath}`
-    console.log(imageUrl)
-    
-    res.send("Uploaded");
+app.post('/api/upload', upload.single("image"), async (req, res) => {
+  try {
+    const path = `${req.file.destination}/${req.file.originalname}`;
+    const newPath = path.slice(9); //to remove 'public' from string
+    const imageUrl = `./${newPath}`;
+
+    // console.log(req.session)
+    // updates petAd to include uploaded image based on req.session.pet_id 
+    // created when a POST is made to '/api/petAds/
+    const updatePetAdsImage = await PetAds.update({
+      image: imageUrl,
+     },
+      {
+         where:  {
+           id: req.session.pet_id
+         }
+      });
+      
+    //  res.status(200).json(updatePetAdsImage);
+    if(updatePetAdsImage.image === null) {
+      res.render('404')
+    }
+  
+    res.render('homepage')
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
+
 
 
 sequelize.sync({ force: false }).then(() => {

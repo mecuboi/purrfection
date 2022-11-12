@@ -9,11 +9,11 @@ const postAdFunction = async (event) => {
     const price = document.querySelector('#price').value.trim();
     const microchip = document.querySelector('#microchip').value.trim();
     const category= document.querySelector('#category').value.trim();
-    // const image = document.querySelector('#petImage')
+
 
     if (name && breed && description && age && price && category) {
   
-      const response = await fetch(`/api/petAds`, {
+      const response = await fetch(`/api/petAds/`, {
         method: 'POST',
         body: JSON.stringify({ 
             name, 
@@ -21,7 +21,6 @@ const postAdFunction = async (event) => {
             description, 
             age,
             price,
-            // image,
             microchip_number: microchip,
             category_id: category,
         }),
@@ -31,7 +30,8 @@ const postAdFunction = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/');
+        //redirect to upload image page
+        document.location.replace('/upload');
       } else {
         alert('Please fill in the empty space');
       }
