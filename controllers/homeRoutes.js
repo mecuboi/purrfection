@@ -6,25 +6,27 @@ router.get('/', async (req, res) => {
   try {
     const petAdsData = await PetAds.findAll({
       order: [['date_created', 'DESC']],
-      limit: 1,
+      limit: 2,
       include: [{ model: User }]
     });
     const petAds = petAdsData.map((pets) => pets.get({ plain: true }));
     const pet = petAds[0]
+    const pet2 = petAds[1]
 
-var activeUser
+    var activeUser
 
     if (req.session.user_id) {
-    const userData = await User.findByPk(req.session.user_id)
+      const userData = await User.findByPk(req.session.user_id)
 
-    const user = userData.get({ plain: true })
+      const user = userData.get({ plain: true })
 
-    activeUser = user
+      activeUser = user
     }
 
 
     res.render('homepage', {
       pet,
+      pet2,
       activeUser,
       logged_in: req.session.logged_in
     });
@@ -57,8 +59,37 @@ router.get('/petads', async (req, res) => {
   }
 });
 
+router.get('/petads/search/:breed', async (req, res) => {
+  try {
+    // Get all projects and JOIN with user data
+    const petAdsData = await PetAds.findAll({
+      include: { model: User },
+      where: {
+        breed: req.params.breed
+      }
+
+    });
+
+    if (!petAdsData[0]) {
+      res.render('noresult', {
+        search: req.params.breed,
+      })
+
+    } else {
+      const petAds = petAdsData.map((pets) => pets.get({ plain: true }));
+
+      res.render('adList', {
+        petAds,
+        logged_in: req.session.logged_in
+      });
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 //Add withAuth
-router.get('/petads/:id', async (req, res) => {
+router.get('/petads/:id', withAuth, async (req, res) => {
   try {
     const petAdsData = await PetAds.findByPk(req.params.id, {
       include: { model: User }
@@ -89,7 +120,7 @@ router.get('/profile', async (req, res) => {
 });
 
 //add withAuth
-router.get('/profile/:id', async (req, res) => {
+router.get('/profile/:id', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.params.id, {
@@ -120,30 +151,30 @@ router.get('/profile/:id', async (req, res) => {
 });
 
 //TODO Test
-router.get('/updateProfile', async (req, res) => {
+router.get('/updateProfile', withAuth, async (req, res) => {
   try {
 
     const userData = await User.findOne({
       //add exclude password
       where: {
-        id: req.session.user_id 
+        id: req.session.user_id
       }
     })
-    
-    if(!userData) {
-      res.status(404).json({ message: "User not found!"})
+
+    if (!userData) {
+      res.status(404).json({ message: "User not found!" })
     }
 
     const user = userData.get({ plain: true });
 
-  res.render('updateProfile', {
-    user,
-    // user_id: 4,
-    //TODO replace with req.session.id once done test,
-  })
-} catch(err) {
-  res.status(500).json(err);
-}
+    res.render('updateProfile', {
+      user,
+      // user_id: 4,
+      //TODO replace with req.session.id once done test,
+    })
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 
@@ -165,7 +196,7 @@ router.get('/categories/:id', async (req, res) => {
   }
 });
 
-router.get('/postad', async (req, res) => {
+router.get('/postad', withAuth, async (req, res) => {
   try {
     res.render('postAd', {
       logged_in: req.session.logged_in

@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
   try {
     // if (!req.files || Object.keys(req.files).length === 0) {
     //   res.status(400).send('No files were uploaded.');
@@ -57,7 +57,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
   try {
     const petAds = await PetAds.update(...req.body,{
       where: {
@@ -79,7 +79,7 @@ router.put('/:id', async (req, res) => {
   }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
   try {
     const petAds = await PetAds.destroy({
       where: {
