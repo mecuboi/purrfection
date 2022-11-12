@@ -69,11 +69,8 @@ router.get('/petads/search/:breed', async (req, res) => {
       }
 
     });
-    // Serialize data so the template can read it
-console.log(petAdsData)
 
     if (!petAdsData[0]) {
-      console.log('its working')
       res.render('noresult', {
         search: req.params.breed,
       })
