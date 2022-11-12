@@ -6,25 +6,27 @@ router.get('/', async (req, res) => {
   try {
     const petAdsData = await PetAds.findAll({
       order: [['date_created', 'DESC']],
-      limit: 1,
+      limit: 2,
       include: [{ model: User }]
     });
     const petAds = petAdsData.map((pets) => pets.get({ plain: true }));
     const pet = petAds[0]
+    const pet2 = petAds[1]
 
-var activeUser
+    var activeUser
 
     if (req.session.user_id) {
-    const userData = await User.findByPk(req.session.user_id)
+      const userData = await User.findByPk(req.session.user_id)
 
-    const user = userData.get({ plain: true })
+      const user = userData.get({ plain: true })
 
-    activeUser = user
+      activeUser = user
     }
 
 
     res.render('homepage', {
       pet,
+      pet2,
       activeUser,
       logged_in: req.session.logged_in
     });
@@ -65,20 +67,25 @@ router.get('/petads/search/:breed', async (req, res) => {
       where: {
         breed: req.params.breed
       }
-      
+
     });
-
-
     // Serialize data so the template can read it
-    const petAds = petAdsData.map((pets) => pets.get({ plain: true }));
+console.log(petAdsData)
 
-    // res.json(petAds)
+    if (!petAdsData[0]) {
+      console.log('its working')
+      res.render('noresult', {
+        search: req.params.breed,
+      })
 
+    } else {
+      const petAds = petAdsData.map((pets) => pets.get({ plain: true }));
 
-    res.render('adList', {
-      petAds,
-      logged_in: req.session.logged_in
-    });
+      res.render('adList', {
+        petAds,
+        logged_in: req.session.logged_in
+      });
+    }
   } catch (err) {
     res.status(500).json(err);
   }
@@ -153,24 +160,24 @@ router.get('/updateProfile', withAuth, async (req, res) => {
     const userData = await User.findOne({
       //add exclude password
       where: {
-        id: req.session.user_id 
+        id: req.session.user_id
       }
     })
-    
-    if(!userData) {
-      res.status(404).json({ message: "User not found!"})
+
+    if (!userData) {
+      res.status(404).json({ message: "User not found!" })
     }
 
     const user = userData.get({ plain: true });
 
-  res.render('updateProfile', {
-    user,
-    // user_id: 4,
-    //TODO replace with req.session.id once done test,
-  })
-} catch(err) {
-  res.status(500).json(err);
-}
+    res.render('updateProfile', {
+      user,
+      // user_id: 4,
+      //TODO replace with req.session.id once done test,
+    })
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 
