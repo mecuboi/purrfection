@@ -1,6 +1,5 @@
 const sequelize = require('../config/connection');
 const { PetAds, Category, User } = require('../models');
-const { faker } = require('@faker-js/faker');
 
 const seedPetAds = require('./petAdSeed.js');
 const seedCategories = require('./categorySeed');
