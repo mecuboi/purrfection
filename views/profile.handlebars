@@ -75,12 +75,12 @@ screens --}}
   <a href="/petads/{{myAds.id}}" target="_blank" class="w-auto h-auto rounded-lg md:w-1/2 ">
     <img class="rounded-lg border shadow-md md:m-2 md:grow-0" src="{{myAds.image}}"
       alt="{{myAds.name}}"></a>
-  <div class="flex flex-col justify-between px-8 leading-normal">
+  <div class="flex flex-col justify-around px-8 leading-normal">
     <a href="/petads/{{myAds.id}}" target="_blank"><h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
       {{myAds.name}} <span class="italic text-stone-400">({{myAds.breed}})</span>
     </h5></a>
-    <p id="my-ad-price">${{myAds.price}}</p>
-    <p id="my-ad-age">{{myAds.age}} years old</p>
+    <p id="my-ad-price">Price: ${{myAds.price}}</p>
+    <p id="my-ad-age">Age: {{myAds.age}} years old</p>
     <p class="mb-3 font-normal text-gray-700">{{myAds.description}}</p>
     <p id="my-ad-category">Type: {{category_name myAds.category_id}}</p>
   </div>

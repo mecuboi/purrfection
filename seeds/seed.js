@@ -3,12 +3,16 @@ const { PetAds, Category, User } = require('../models');
 
 const seedPetAds = require('./petAdSeed.js');
 const seedCategories = require('./categorySeed');
-const seedUsers= require('./userSeed');
+const seedUsers = require('./userSeed');
 const seedSavedPetsTag = require('./savedPetsTagSeed');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
   console.log('\n----- DATABASE SYNCED -----\n');
+
+  await seedCategories();
+
+  console.log('\n----- Categories SEEDED -----\n');
 
   await seedUsers();
 
@@ -23,7 +27,7 @@ const seedDatabase = async () => {
   console.log('\n----- Saved Pets Tag SEEDED-----\n');
 
   process.exit(0);
- 
+
 };
 
 seedDatabase();
