@@ -12,7 +12,8 @@
     "start": "node server.js",
     "watch": "nodemon server.js",
     "seed": "node seeds/seed.js",
-    "lint": "npx eslint **/*.js --fix"
+    "lint": "npx eslint **/*.js --fix",
+    "heroku-postbuild": "node ./seeds/index.js"
   },
   "keywords": [],
   "author": "",
