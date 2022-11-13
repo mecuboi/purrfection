@@ -96,15 +96,20 @@ router.get('/petads/:id', withAuth, async (req, res) => {
     });
 
     if (!petAdsData) {
-      res.redirect('/404notfound')
+      res.redirect('/404')
     }
 
     const petAds = petAdsData.get({ plain: true });
+    const sellerId = petAds.seller_id;
+    var correctUser = false;
 
-    // res.json(petAds)
+    if(req.session.user_id == sellerId) {
+      correctUser = true
+    };
 
     res.render('singleAdPage', {
       petAds,
+      correctUser,
       logged_in: req.session.logged_in
     });
   } catch (err) {
