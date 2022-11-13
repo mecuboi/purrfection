@@ -1,3 +1,5 @@
+
+
 {{#each petAds as |ads|}}
 <a href="/petads/{{ads.id}}" 
   class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 adList">
@@ -5,7 +7,7 @@
   <div class="flex flex-col justify-between p-4 leading-normal">
     <h5 class="mb-2 text-2xl font-bold tracking-tight block uppercase tracking-wide text-gray-900">
       {{ads.name}} <h5
-        class="mb-2 text-xl font-bold tracking-tight block uppercase tracking-wide text-gray-900 mb-6 text-gray-500 md:text-lg">
+        class="mb-2 text-xl font-bold tracking-tight block uppercase tracking-wide mb-6 text-gray-500 md:text-lg">
         ({{ads.breed}})</h5>
     </h5>
     <p class="mb-3 font-normal text-gray-700">{{ads.description}}</p>

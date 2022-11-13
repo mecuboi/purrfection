@@ -22,7 +22,10 @@
       <p>{{petAds.user.email}}</p>
       <p>{{petAds.user.phone_number}}</p>
       <br>
-      <p class="mb-6 text-gray-500 text-sm">Ads Created: {{petAds.date_created}}</p>
+      <p class="mb-6 text-gray-500 text-sm">Ads Created: {{format_time petAds.date_created}} {{format_date petAds.date_created}}</p>
+    {{#if correctUser}}
+    <button type="button" id="delete-button" class="focus:outline-none text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2.5 mr-2 mb-2">Delete Ad</button>
+    {{/if}}
     </div>
   </div>
 </section>

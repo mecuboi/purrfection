@@ -1,11 +1,13 @@
-
 <div class="container-fill mx-auto mb-5 py-5 text-xl bg-gradient-to-r from-orange-200 to-orange-300">
-    <h2 class="text-center transform transition duration-500 hover:scale-125 hover:text-neutral-50">Welcome, <strong>{{user.first_name}}!</strong></h2>
+  <h2 class="text-center transform transition duration-500 hover:scale-125 hover:text-neutral-50">
+    <strong>{{user.first_name}}'s profile</strong></h2>
 </div>
-{{!-- Parent div for profile page elements classes containing 'md:' indicate elements shown differently for larger screens --}}
+{{!-- Parent div for profile page elements classes containing 'md:' indicate elements shown differently for larger
+screens --}}
 <div id="hero" class="flex flex-row justify-around pb-5 md:grid md:grid-cols-2 gap-1 ">
-{{!-- User Card --}}
-  <div id="user-card" class="w-full bg-gradient-to-b from-orange-200 to bg-orange-300 rounded-lg border border-yellow-200 shadow-md">
+  {{!-- User Card --}}
+  <div id="user-card"
+    class="w-full bg-gradient-to-b from-orange-200 to bg-orange-300 rounded-lg border border-yellow-200 shadow-md">
 
 {{#ifEquals user.id currentUserId}}
 {{!-- Edit button--}}
@@ -16,14 +18,39 @@
       </div>
 {{/ifEquals}}
 
-      <div id="user-info" class="flex flex-col items-center pb-1">
-          <img class="mb-3 w-36 h-36 rounded-lg shadow-lg" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="user profile photo">
-          <h5 class="mb-1 text-xl md:text-2xl font-medium">{{user.first_name}} {{user.last_name}}</h5>
-          <hr class="px-5 py-3 border-slate-600">
-          <a href='tel:{{user.phone_number}}'><span class="text-lg md:text-xl text-gray-500  my-3">{{user.phone_number}}</span></a>
-          <a href='mailto:{{user.email}}'><span class="text-lg md:text-xl text-gray-500  my-3">{{user.email}}</span></a>
-          <span class="text-lg md:text-xl text-gray-500 my-3">{{user.address}}</span>
-      </div>
+    <div class="flex justify-end px-4 pt-4">
+      <a href='/updateProfile' id="edit-user-btn"
+        class="inline-block text-gray-500 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg text-sm p-1.5">
+        {{#if correctUser}}
+        <img src="https://img.icons8.com/sf-regular-filled/36/null/edit-property.png" />
+        {{/if}}
+      </a>
+      {{!-- <div id="dropdownDotsHorizontal" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow">
+        <ul class=" text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
+          <li>
+            <button id="edit-user-btn"
+              class="block w-full py-2 px-3 text-gray-700 hover:bg-gray-400 hover:text-white">Edit</button>
+          </li>
+          <li>
+            <button id="surprise-user-btn"
+              class="block w-full py-2 px-3 text-gray-700 hover:bg-gray-400 hover:text-white">Surprise</button>
+          </li>
+        </ul>
+      </div> --}}
+    </div>
+
+
+    <div id="user-info" class="flex flex-col items-center pb-1">
+      <img class="mb-3 w-36 h-36 rounded-lg shadow-lg"
+        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+        alt="user profile photo">
+      <h5 class="mb-1 text-xl md:text-2xl font-medium">{{user.first_name}} {{user.last_name}}</h5>
+      <hr class="px-5 py-3 border-slate-600">
+      <a href='tel:{{user.phone_number}}'><span
+          class="text-lg md:text-xl text-gray-500  my-3">{{user.phone_number}}</span></a>
+      <a href='mailto:{{user.email}}'><span class="text-lg md:text-xl text-gray-500  my-3">{{user.email}}</span></a>
+      <span class="text-lg md:text-xl text-gray-500 my-3">{{user.address}}</span>
+    </div>
   </div>
 
   <div id="favourite-ad" class="flex flex-row w-full bg-white rounded-lg border shadow-md md:flex-row md:container hover:bg-gray-100 ">
@@ -38,29 +65,28 @@
         <div class="flex flex-col justify-between p-4 leading-normal">
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
           {{favourites.name}} <span class="italic text-stone-400">({{favourites.breed}})</span>
-          </h5>
-          <p class="mb-3 font-normal text-gray-700 no-underline">{{favourites.description}}</p>
-        </div>
+        </h5>
+        <p class="mb-3 font-normal text-gray-700 no-underline">{{favourites.description}}</p>
+      </div>
     </a>
-{{/each}}
-</div>
+    {{/each}}
+  </div>
 </div>
 
-<div id="user-ad-title" class="container bg-orange-300">
-    <h2 class="text-center text-xl mx-auto"> My Ads: </h2>
-  </div>
- {{#each userPetAds as |myAds|}}
-  <div id="my-ad" class="flex flex-row mx-auto w-full pb-2 bg-white rounded-lg border shadow-md ">
-  <a href="/petads/{{myAds.id}}" target="_blank"
-  class="adList">
-  <img class="object-cover w-auto h-auto rounded-lg md:h-auto md:w-auto"
-    src="{{myAds.image}}" alt="{{myAds.name}}"></a>
-  <div class="flex flex-col justify-between p-4 leading-normal">
-    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-    {{myAds.name}} <span class="italic text-stone-400">({{myAds.breed}})</span>
-    </h5>
-    <p id="my-ad-price">${{myAds.price}}</p>
-    <p id="my-ad-age">{{myAds.age}} years old</p>
+<div id="user-ad-title" class=" bg-orange-300 w-full mb-4 p-2">
+  <h2 class="text-center text-xl mx-auto"> My Ads: </h2>
+</div>
+{{#each userPetAds as |myAds|}}
+<div id="my-ad" class="flex flex-row mx-auto md:mx-3 pb-2 bg-white rounded-lg border shadow-md my-4">
+  <a href="/petads/{{myAds.id}}" target="_blank" class="w-auto h-auto rounded-lg md:w-1/2 ">
+    <img class="rounded-lg border shadow-md md:m-2 md:grow-0" src="{{myAds.image}}"
+      alt="{{myAds.name}}"></a>
+  <div class="flex flex-col justify-around px-8 leading-normal">
+    <a href="/petads/{{myAds.id}}" target="_blank"><h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+      {{myAds.name}} <span class="italic text-stone-400">({{myAds.breed}})</span>
+    </h5></a>
+    <p id="my-ad-price">Price: ${{myAds.price}}</p>
+    <p id="my-ad-age">Age: {{myAds.age}} years old</p>
     <p class="mb-3 font-normal text-gray-700">{{myAds.description}}</p>
     <p id="my-ad-category">Type: {{category_name myAds.category_id}}</p>
   </div>
@@ -71,5 +97,5 @@
 
 <script src="./js/profile.js"></script>
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
-{{!-- <script src="../path/to/flowbite/dist/flowbite.js"></script> --}}
-
+{{!--
+<script src="../path/to/flowbite/dist/flowbite.js"></script> --}}

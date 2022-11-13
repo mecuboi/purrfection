@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
   try {
     const userDataById = await User.findByPk(req.params.id, {
       attributes: { exclude: ['password'] },
@@ -66,7 +66,7 @@ router.post('/', async (req, res) => {
 });
 
 //Update routes
-router.put('/:id', async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
   try {
     const updateUser = await User.update({
       first_name: req.body.first_name,
