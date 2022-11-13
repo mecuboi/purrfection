@@ -1,14 +1,13 @@
 
 <div>
-    <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="flex flex-row md:w-1/2 mx-auto mt-10">
         <div class="mt-5 md:col-span-2 md:mt-0">
             <form id="post-image-form"
                   action ="/api/upload"
                   method ="POST"
                   enctype ="multipart/form-data">
                         <div>
-                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Pet
-                                Pictures</label>
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Add an Image for your pet ad<address></address></label>
                             <div
                                 class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                                 <div class="space-y-1 text-center">
@@ -28,16 +27,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-row bg-gray-50 px-4 py-3 text-right sm:px-6">
+                    <div class="flex flex-row mx-auto bg-gray-50 px-4 py-3 text-right sm:px-6">
                         <button
                             id ="post-btn"
-                            class="transition duration-500 bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            class="relative right-10 transition duration-500 bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             type="submit">
                             Post Image
                         </button>
                         <a href="/"
                         id ="skip-btn"
-                            class="transition duration-500 bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            class="relative left-10 transition duration-500 bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             Skip
                         </a>
                     </div>
