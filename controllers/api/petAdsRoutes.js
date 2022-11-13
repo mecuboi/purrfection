@@ -8,8 +8,11 @@ router.get('/', async (req, res) => {
     const newPetAds = await PetAds.findAll({
       include: {model: User}
     });
-
-    res.status(200).json(newPetAds);
+    
+    req.session.save(() => {
+      req.session.current_view_pet_id = newPetAds.id
+      res.status(200).json(newPetAds);
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -17,41 +20,15 @@ router.get('/', async (req, res) => {
 
 router.post('/', withAuth, async (req, res) => {
   try {
-    // if (!req.files || Object.keys(req.files).length === 0) {
-    //   res.status(400).send('No files were uploaded.');
-    //   return;
-    // }
-  
-    //   const images = req.files.petImage
-  
-    //   const uploadPath = `${__dirname}/../../public/images/${images.name}`;
-        
-    //   const uploadImage = images.mv(uploadPath)
-
-    //   if (!uploadImage) {
-    //     res.status(500).json({ message: "Failed to upload image"})
-    //   }
-  
-      // res.send('File uploaded to ' + uploadPath);
-  
-      // console.log('req.files >>>', req.files); 
-
       const newPetAds = await PetAds.create({
         ...req.body,
         seller_id: req.session.user_id,
-        // image: uploadPath,
-        // name: req.body.name,
-        // breed: req.body.breed,
-        // microchip_number: req.body.microchip,
-        // age: req.body.age,
-        // price: req.body.price,
-        // description: req.body.description,
-        // image: req.body.image,
-        // category_id: req.body.category,
-        // seller_id: req.session.userId
       });
-
-    res.status(200).json(newPetAds);
+      //added for when user wants to put an image for said petAd
+      req.session.save(() => {
+        req.session.pet_id = newPetAds.id;
+        res.status(200).json(newPetAds);
+      });
   } catch (err) {
     res.status(500).json(err);
   }

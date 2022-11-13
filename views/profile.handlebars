@@ -9,7 +9,14 @@ screens --}}
   <div id="user-card"
     class="w-full bg-gradient-to-b from-orange-200 to bg-orange-300 rounded-lg border border-yellow-200 shadow-md">
 
-    {{!-- Dropdown menu --}}
+{{#ifEquals user.id currentUserId}}
+{{!-- Edit button--}}
+      <div  class="flex justify-end px-4 pt-4">
+          <a href='/updateProfile' id="edit-user-btn" class="inline-block text-gray-500 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg text-sm p-1.5"> 
+             <img src="https://img.icons8.com/sf-regular-filled/36/null/edit-property.png"/>
+          </a>
+      </div>
+{{/ifEquals}}
 
     <div class="flex justify-end px-4 pt-4">
       <a href='/updateProfile' id="edit-user-btn"
@@ -46,18 +53,17 @@ screens --}}
     </div>
   </div>
 
-  <div id="favourite-ad"
-    class="flex flex-row w-full bg-white rounded-lg border shadow-md md:flex-row md:container hover:bg-gray-100 ">
-    <div id="favourite-ad-title" class="container bg-orange-300">
-      <h2 class="text-center text-xl p-2"> My favourites: </h2>
-    </div>
-    {{#each user.pet_ads as |favourites|}}
-    {{!-- TODO carousel this --}}
-    <a href="/petads/{{favourites.id}}" target="_blank" class="adList">
-      <img class="object-cover w-auto h-auto rounded-lg md:h-auto md:w-auto" src="{{favourites.image}}"
-        alt="{{favourites.name}}">
-      <div class="flex flex-col justify-between p-4 leading-normal">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+  <div id="favourite-ad" class="flex flex-row w-full bg-white rounded-lg border shadow-md md:flex-row md:container hover:bg-gray-100 ">
+  <div id="favourite-ad-title" class="container bg-orange-300">
+    <h2 class="text-center text-xl"> My favourites: </h2>
+  </div>
+ {{#each user.pet_ads as |favourites|}}
+    <a href="/petads/{{favourites.id}}" target="_blank"
+      class="adList">
+        <img class="object-cover w-auto h-auto rounded-lg md:h-auto md:w-auto"
+          src="{{favourites.image}}" alt="{{favourites.name}}">
+        <div class="flex flex-col justify-between p-4 leading-normal">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
           {{favourites.name}} <span class="italic text-stone-400">({{favourites.breed}})</span>
         </h5>
         <p class="mb-3 font-normal text-gray-700 no-underline">{{favourites.description}}</p>
@@ -89,7 +95,7 @@ screens --}}
 
 
 
-<script src="/js/profile.js"></script>
+<script src="./js/profile.js"></script>
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 {{!--
 <script src="../path/to/flowbite/dist/flowbite.js"></script> --}}

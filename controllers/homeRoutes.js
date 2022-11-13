@@ -13,7 +13,9 @@ router.get('/', async (req, res) => {
     const pet = petAds[0]
     const pet2 = petAds[1]
 
-    var activeUser
+
+
+var activeUser
 
     if (req.session.user_id) {
       const userData = await User.findByPk(req.session.user_id)
@@ -119,7 +121,6 @@ router.get('/petads/:id', withAuth, async (req, res) => {
 
 router.get('/profile', async (req, res) => {
   const userId = req.session.user_id
-  console.log("\n\nhi\n\n", req.session.user_id)
 
   res.redirect(`/profile/${userId}`)
 });
@@ -129,6 +130,7 @@ router.get('/profile/:id', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.params.id, {
+      attributes: { exclude: ['password'] },
       include: [{ model: PetAds, through: SavedPetsTag }],
       // limit: 5
     });
@@ -143,19 +145,10 @@ router.get('/profile/:id', withAuth, async (req, res) => {
     const user = userData.get({ plain: true });
     const userPetAds = userPetAdData.map(data => data.get({ plain: true }));
 
-    var correctUser = false;
-
-    if(req.session.user_id == req.params.id) {
-      correctUser = true
-    };
-
-
-
     res.render('profile', {
       user,
       userPetAds,
-      correctUser,
-      // favouritePetAds,
+      currentUserId: req.session.user_id,
       logged_in: req.session.logged_in,
       user_id: req.session.user_id
     });
@@ -164,12 +157,12 @@ router.get('/profile/:id', withAuth, async (req, res) => {
   }
 });
 
-//TODO Test
-router.get('/updateProfile', withAuth, async (req, res) => {
+
+router.get('/updateProfile', async (req, res) => {
   try {
 
     const userData = await User.findOne({
-      //add exclude password
+      attributes: { exclude: ['password'] },
       where: {
         id: req.session.user_id
       }
@@ -181,14 +174,12 @@ router.get('/updateProfile', withAuth, async (req, res) => {
 
     const user = userData.get({ plain: true });
 
-    res.render('updateProfile', {
-      user,
-      // user_id: 4,
-      //TODO replace with req.session.id once done test,
-    })
-  } catch (err) {
-    res.status(500).json(err);
-  }
+  res.render('updateProfile', {
+    user,
+  })
+} catch(err) {
+  res.status(500).json(err);
+}
 });
 
 
@@ -238,6 +229,12 @@ router.get('/aboutus', (req, res) => {
 
 router.get('/404', (req, res) => {
   res.render('404')
+});
+
+router.get('/upload', (req, res) => {
+  res.render('upload', {
+    pet_ads_id: req.session.pet_id 
+  });
 });
 
 
