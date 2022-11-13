@@ -33,8 +33,10 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const postsavedPetsTag = await SavedPetsTag.create({
-            saved_pet_ads_id: req.body.saved_pet_ads_id,
-            user_tag_id: req.body.user_tag_id
+            // saved_pet_ads_id: req.body.saved_pet_ads_id,
+            // user_tag_id: req.body.user_tag_id
+            saved_pet_ads_id: req.session.current_view_pet_id,
+            user_tag_id: req.session.user_id
             // OR
             //user_tag_id: req.session.id
         });

@@ -61,8 +61,9 @@ app.post('/api/upload', upload.single("image"), async (req, res) => {
   try {
     const path = `${req.file.destination}/${req.file.originalname}`;
     const newPath = path.slice(9); //to remove 'public' from string
-    const imageUrl = `./${newPath}`;
+    const imageUrl = `../${newPath}`;
 
+    
     // console.log(req.session)
     // updates petAd to include uploaded image based on req.session.pet_id 
     // created when a POST is made to '/api/petAds/
@@ -74,14 +75,9 @@ app.post('/api/upload', upload.single("image"), async (req, res) => {
            id: req.session.pet_id
          }
       });
-      
-    //  res.status(200).json(updatePetAdsImage);
-    if(updatePetAdsImage.image === null) {
-      res.render('404')
-    }
-  
-    res.render('homepage')
-
+      //Once updated redirect to homepage
+    res.redirect('/')
+    
   } catch (err) {
     res.status(500).json(err);
   }

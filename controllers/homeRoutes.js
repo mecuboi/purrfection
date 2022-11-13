@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
     const petAds = petAdsData.map((pets) => pets.get({ plain: true }));
     const pet = petAds[0]
 
+
 var activeUser
 
     if (req.session.user_id) {
@@ -83,7 +84,6 @@ router.get('/petads/:id', async (req, res) => {
 
 router.get('/profile', async (req, res) => {
   const userId = req.session.user_id
-  console.log("\n\nhi\n\n", req.session.user_id)
 
   res.redirect(`/profile/${userId}`)
 });
@@ -93,6 +93,7 @@ router.get('/profile/:id', async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.params.id, {
+      attributes: { exclude: ['password'] },
       include: [{ model: PetAds, through: SavedPetsTag }],
       // limit: 5
     });
@@ -107,7 +108,6 @@ router.get('/profile/:id', async (req, res) => {
     const user = userData.get({ plain: true });
     const userPetAds = userPetAdData.map(data => data.get({ plain: true }));
 
-
     res.render('profile', {
       user,
       userPetAds,
@@ -119,12 +119,12 @@ router.get('/profile/:id', async (req, res) => {
   }
 });
 
-//TODO Test
+
 router.get('/updateProfile', async (req, res) => {
   try {
 
     const userData = await User.findOne({
-      //add exclude password
+      attributes: { exclude: ['password'] },
       where: {
         id: req.session.user_id 
       }
@@ -138,8 +138,6 @@ router.get('/updateProfile', async (req, res) => {
 
   res.render('updateProfile', {
     user,
-    // user_id: 4,
-    //TODO replace with req.session.id once done test,
   })
 } catch(err) {
   res.status(500).json(err);

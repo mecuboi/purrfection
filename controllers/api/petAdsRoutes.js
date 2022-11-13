@@ -8,8 +8,11 @@ router.get('/', async (req, res) => {
     const newPetAds = await PetAds.findAll({
       include: {model: User}
     });
-
-    res.status(200).json(newPetAds);
+    
+    req.session.save(() => {
+      req.session.current_view_pet_id = newPetAds.id
+      res.status(200).json(newPetAds);
+    });
   } catch (err) {
     res.status(500).json(err);
   }
