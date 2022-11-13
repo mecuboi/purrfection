@@ -13,7 +13,7 @@
     "watch": "nodemon server.js",
     "seed": "node seeds/seed.js",
     "lint": "npx eslint **/*.js --fix",
-    "heroku-postbuild": "node ./seeds/index.js"
+    "heroku-postbuild": "node ./seeds/seed.js"
   },
   "keywords": [],
   "author": "",
