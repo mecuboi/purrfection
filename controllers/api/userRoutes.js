@@ -6,6 +6,7 @@ const withAuth = require('../../utils/auth');
 router.get('/', async (req, res) => {
     try {
         const userData = await User.findAll({
+          attributes: { exclude: ['password'] },
           include: [
             { model: PetAds, through: SavedPetsTag },
           ]
@@ -26,8 +27,9 @@ router.get('/', async (req, res) => {
 router.get('/:id', withAuth, async (req, res) => {
   try {
     const userDataById = await User.findByPk(req.params.id, {
+      attributes: { exclude: ['password'] },
       include: [
-        { model: PetAds, through: SavedPetsTag }
+        { model: PetAds, through: SavedPetsTag },
       ]
     })
 
@@ -77,7 +79,8 @@ router.put('/:id', withAuth, async (req, res) => {
     },
       {
         where: {
-          id: req.params.id,
+          id: req.session.user_id 
+          // req.params.id,
         },
   });
 
@@ -150,5 +153,7 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
+
+
 
 module.exports = router;

@@ -1,12 +1,51 @@
-<html>
-	<body>
-		<form ref='uploadForm' 
-			id='uploadForm' 
-			action='/upload' 
-			method='post' 
-			encType="multipart/form-data">
-				<input type="file" name="petImage" />
-				<input type='submit' value='Upload' />
-		</form>		
-	</body>
-</html>
+
+<div>
+    <div class="flex flex-row md:w-1/2 mx-auto mt-10">
+        <div class="mt-5 md:col-span-2 md:mt-0">
+            <form id="post-image-form"
+                  action ="/api/upload"
+                  method ="POST"
+                  enctype ="multipart/form-data">
+                        <div>
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Add an Image for your pet ad<address></address></label>
+                            <div
+                                class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+                                <div class="space-y-1 text-center">
+                                    <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
+                                        viewBox="0 0 48 48" aria-hidden="true">
+                                        <path
+                                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <div class="flex text-sm text-gray-600">
+                                        <label for="image"
+                                            class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                                            <input id="petImage" name="image" type="file">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-row mx-auto bg-gray-50 px-4 py-3 text-right sm:px-6">
+                        <button
+                            id ="post-btn"
+                            class="relative right-10 transition duration-500 bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            type="submit">
+                            Post Image
+                        </button>
+                        <a href="/"
+                        id ="skip-btn"
+                            class="relative left-10 transition duration-500 bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            Skip
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>  
+    </div>
+</div>
+
+
+
+{{!-- <script src="./js/upload.js"></script> --}} 
