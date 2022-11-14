@@ -70,8 +70,9 @@ npm start
 ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!--Usage-->
-<!-- TODO add Usage, include demo gif -->
+## Usage
+Once signed in, here is the demo of how you would navigate through the website:
+
 
 
 <!--USER STORIES-->

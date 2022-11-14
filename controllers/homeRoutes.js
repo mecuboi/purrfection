@@ -184,6 +184,7 @@ router.get('/updateProfile', async (req, res) => {
 
   res.render('updateProfile', {
     user,
+    logged_in: req.session.logged_in
   })
 } catch(err) {
   res.status(500).json(err);
@@ -317,7 +318,11 @@ router.post('/email/send', (req, res) => {
     console.log('Message sent: %s', info.messageId);
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
-    res.render('email', { msg: 'Email has been sent' });
+    res.render('email', {
+      logged_in: req.session.logged_in,
+      msg: 'Email has been sent'
+    }      
+    );
   });
 });
 
