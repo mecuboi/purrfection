@@ -8,9 +8,9 @@ router.get('/', async (req, res) => {
     const newPetAds = await PetAds.findAll({
       include: { model: User }
     });
-    
+
     req.session.save(() => {
-      req.session.current_view_pet_id = newPetAds.id
+      req.session.current_view_pet_id = newPetAds.id;
       res.status(200).json(newPetAds);
     });
   } catch (err) {
@@ -20,15 +20,15 @@ router.get('/', async (req, res) => {
 
 router.post('/', withAuth, async (req, res) => {
   try {
-      const newPetAds = await PetAds.create({
-        ...req.body,
-        seller_id: req.session.user_id,
-      });
+    const newPetAds = await PetAds.create({
+      ...req.body,
+      seller_id: req.session.user_id,
+    });
       //added for when user wants to put an image for said petAd
-      req.session.save(() => {
-        req.session.pet_id = newPetAds.id;
-        res.status(200).json(newPetAds);
-      });
+    req.session.save(() => {
+      req.session.pet_id = newPetAds.id;
+      res.status(200).json(newPetAds);
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -39,7 +39,6 @@ router.put('/:id', withAuth, async (req, res) => {
     const petAds = await PetAds.update(...req.body, {
       where: {
         id: req.params.id,
-        // user_id: req.session.user_id,
       },
 
     });
@@ -51,10 +50,10 @@ router.put('/:id', withAuth, async (req, res) => {
 
     res.status(200).json(petAds);
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(500).json(err);
   }
-})
+});
 
 
 router.delete('/:id', withAuth, async (req, res) => {
@@ -62,7 +61,6 @@ router.delete('/:id', withAuth, async (req, res) => {
     const petAds = await PetAds.destroy({
       where: {
         id: req.params.id,
-        // user_id: req.session.user_id,
       },
     });
 

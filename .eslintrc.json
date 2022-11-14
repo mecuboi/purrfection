@@ -5,8 +5,7 @@
     "commonjs": true,
     "node": true,
     "es6": true,
-    "es2017": true,
-    "es2018": true
+    "es2021": true
   },
   "rules": {
     "no-undef-init": "error",
@@ -18,14 +17,12 @@
     "no-unreachable": "error",
     "curly": "error",
     "dot-notation": "error",
-    "eqeqeq": "error",
     "no-empty-function": "error",
     "no-multi-spaces": "error",
     "no-mixed-spaces-and-tabs": "error",
     "no-trailing-spaces": "error",
     "default-case": "error",
     "no-fallthrough": "error",
-    "no-unused-vars": "error",
     "no-use-before-define": "error",
     "no-redeclare": "error",
     "brace-style": "error",

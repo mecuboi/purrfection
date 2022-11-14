@@ -1,6 +1,3 @@
-const e = require('express');
-const Handlebars = require('handlebars');
-
 module.exports = {
   format_date: (date) => {
     // Format date as MM/DD/YYYY
@@ -18,41 +15,41 @@ module.exports = {
 
     // Return a random emoji
     if (randomNum > 0.7) {
-      return `<span for="img" aria-label="lightbulb">💡</span>`;
+      return '<span for="img" aria-label="lightbulb">💡</span>';
     } else if (randomNum > 0.4) {
-      return `<span for="img" aria-label="laptop">💻</span>`;
+      return '<span for="img" aria-label="laptop">💻</span>';
     } else {
-      return `<span for="img" aria-label="gear">⚙️</span>`;
+      return '<span for="img" aria-label="gear">⚙️</span>';
     }
   },
 
   category_name: (num) => {
     if (num === 1) {
-      return 'Dogs 🐶'
+      return 'Dogs 🐶';
     } else if (num === 2) {
-      return 'Cats 🐈'
+      return 'Cats 🐈';
     } else if (num === 3) {
-      return 'Small Animals 🐇'
+      return 'Small Animals 🐇';
     } else {
-      return
+      return;
     }
   },
 
   isUser: (profileUserId, reqUserId) => {
     if (reqUserId !== profileUserId) {
-      return 
+      return;
     } else {
-    const gotoNext = (req, res, next) => {
-      next();
+      const gotoNext = (req, res, next) => {
+        next();
+      };
+      gotoNext();
     }
-    gotoNext();
-  }
   },
 
 
- ifEquals: (arg1, arg2, options) => {
+  ifEquals: (arg1, arg2, options) => {
     return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
-},
+  },
 
-}
+};
 
