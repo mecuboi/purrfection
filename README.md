@@ -1,4 +1,3 @@
-# <GROUP-6-Purrfection>
 ## Purrfection
 <a id="readme-top"></a>
 
@@ -73,6 +72,7 @@ npm start
 ## Usage
 Once signed in, here is the demo of how you would navigate through the website:
 
+![Animation cycles through signing into the app, clicking on buttons, and updating blog posts.](./public/images/demo.gif) 
 
 
 <!--USER STORIES-->
