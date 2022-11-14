@@ -11,19 +11,19 @@ router.get('/', async (req, res) => {
       include: [{ model: User }]
     });
     const petAds = petAdsData.map((pets) => pets.get({ plain: true }));
-    const pet = petAds[0]
-    const pet2 = petAds[1]
+    const pet = petAds[0];
+    const pet2 = petAds[1];
 
 
 
-var activeUser
+    var activeUser;
 
     if (req.session.user_id) {
-      const userData = await User.findByPk(req.session.user_id)
+      const userData = await User.findByPk(req.session.user_id);
 
-      const user = userData.get({ plain: true })
+      const user = userData.get({ plain: true });
 
-      activeUser = user
+      activeUser = user;
     }
 
 
@@ -46,12 +46,8 @@ router.get('/petads', async (req, res) => {
       include: { model: User }
     });
 
-
     // Serialize data so the template can read it
     const petAds = petAdsData.map((pets) => pets.get({ plain: true }));
-
-    // res.json(petAds)
-
 
     res.render('adList', {
       petAds,
@@ -64,7 +60,7 @@ router.get('/petads', async (req, res) => {
 
 router.get('/petads/search/:breed', async (req, res) => {
   try {
-    // Get all projects and JOIN with user data
+    // Get all petads and JOIN with user data
     const petAdsData = await PetAds.findAll({
       include: { model: User },
       where: {
@@ -76,7 +72,7 @@ router.get('/petads/search/:breed', async (req, res) => {
     if (!petAdsData[0]) {
       res.render('noresult', {
         search: req.params.breed,
-      })
+      });
 
     } else {
       const petAds = petAdsData.map((pets) => pets.get({ plain: true }));
@@ -91,7 +87,6 @@ router.get('/petads/search/:breed', async (req, res) => {
   }
 });
 
-//Add withAuth
 router.get('/petads/:id', withAuth, async (req, res) => {
   try {
     const petAdsData = await PetAds.findByPk(req.params.id, {
@@ -99,12 +94,13 @@ router.get('/petads/:id', withAuth, async (req, res) => {
     });
 
     if (!petAdsData) {
-      res.redirect('/404')
+      res.redirect('/404');
     }
 
     const petAds = petAdsData.get({ plain: true });
     const sellerId = petAds.seller_id;
     var correctUser = false;
+
 
     if (req.session.user_id == sellerId) {
       correctUser = true
@@ -121,19 +117,18 @@ router.get('/petads/:id', withAuth, async (req, res) => {
 });
 
 router.get('/profile', async (req, res) => {
-  const userId = req.session.user_id
+  const userId = req.session.user_id;
 
-  res.redirect(`/profile/${userId}`)
+  res.redirect(`/profile/${userId}`);
 });
 
-//add withAuth
+
 router.get('/profile/:id', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.params.id, {
       attributes: { exclude: ['password'] },
       include: [{ model: PetAds, through: SavedPetsTag }],
-      // limit: 5
     });
 
     //get petAds data where petAds.seller_id matches User.id || req.params.id
@@ -174,26 +169,26 @@ router.get('/updateProfile', async (req, res) => {
       where: {
         id: req.session.user_id
       }
-    })
+    });
 
     if (!userData) {
-      res.status(404).json({ message: "User not found!" })
+      res.status(404).json({ message: 'User not found!' });
     }
 
     const user = userData.get({ plain: true });
 
-  res.render('updateProfile', {
-    user,
-  })
-} catch(err) {
-  res.status(500).json(err);
-}
+    res.render('updateProfile', {
+      user,
+    });
+  } catch(err) {
+    res.status(500).json(err);
+  }
 });
 
 
 router.get('/categories/:id', async (req, res) => {
   try {
-    // Find the logged in user based on the session ID
+    // Find the pet ads based on the category ID
     const categoryData = await Category.findByPk(req.params.id, {
       include: [{ model: PetAds }],
     });
@@ -236,12 +231,12 @@ router.get('/aboutus', (req, res) => {
 });
 
 router.get('/404', (req, res) => {
-  res.render('404')
+  res.render('404');
 });
 
 router.get('/upload', (req, res) => {
   res.render('upload', {
-    pet_ads_id: req.session.pet_id 
+    pet_ads_id: req.session.pet_id
   });
 });
 

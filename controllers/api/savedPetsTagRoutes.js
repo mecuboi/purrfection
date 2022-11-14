@@ -1,75 +1,71 @@
 const router = require('express').Router();
-const { User, PetAds, SavedPetsTag } = require('../../models');
-const withAuth = require('../../utils/auth');
+const { SavedPetsTag } = require('../../models');
+
 
 //get routes
 router.get('/', async (req, res) => {
-    try {
-        const savedPetsTag= await SavedPetsTag.findAll();
+  try {
+    const savedPetsTag= await SavedPetsTag.findAll();
 
-            res.status(200).json(savedPetsTag)
+    res.status(200).json(savedPetsTag);
 
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-      }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 router.get('/:id', async (req, res) => {
-    try {
-        const savedPetsTagById = await SavedPetsTag.findByPk(req.params.id)
+  try {
+    const savedPetsTagById = await SavedPetsTag.findByPk(req.params.id);
 
-        if(!savedPetsTagById) {
-            res.status(404).json({ message: 'No such tag found!' })
-        }
-        res.status(200).json(savedPetsTagById)
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-      }
+    if(!savedPetsTagById) {
+      res.status(404).json({ message: 'No such tag found!' });
+    }
+    res.status(200).json(savedPetsTagById);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 //post routes
 router.post('/', async (req, res) => {
-    try {
-        const postsavedPetsTag = await SavedPetsTag.create({
-            // saved_pet_ads_id: req.body.saved_pet_ads_id,
-            // user_tag_id: req.body.user_tag_id
-            saved_pet_ads_id: req.session.current_view_pet_id,
-            user_tag_id: req.session.user_id
-            // OR
-            //user_tag_id: req.session.id
-        });
+  try {
+    const postsavedPetsTag = await SavedPetsTag.create({
+      saved_pet_ads_id: req.session.current_view_pet_id,
+      user_tag_id: req.session.user_id
+    });
 
-        res.status(200).json(postsavedPetsTag)
+    res.status(200).json(postsavedPetsTag);
 
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-      }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 
 //delete routes
 router.delete('/:id', async (req, res) => {
-    try {
-        const deleteSavedPetsTag = await SavedPetsTag.destroy({
-            where: {
-                id: req.params.id,
-            },
-        });
+  try {
+    const deleteSavedPetsTag = await SavedPetsTag.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
 
-        if(!deleteSavedPetsTag)  {
-            res.status(404).json({ message: 'No such tag found!' })
-        }
-
-        res.status(200).json(deleteSavedPetsTag)
-
-
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err)
+    if(!deleteSavedPetsTag) {
+      res.status(404).json({ message: 'No such tag found!' });
     }
-})
+
+    res.status(200).json(deleteSavedPetsTag);
+
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 module.exports = router;
 

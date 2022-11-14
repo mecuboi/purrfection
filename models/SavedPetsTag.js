@@ -1,6 +1,6 @@
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require('sequelize');
 
-const sequelize = require("../config/connection");
+const sequelize = require('../config/connection');
 
 class SavedPetsTag extends Model {}
 
@@ -13,28 +13,28 @@ SavedPetsTag.init(
       autoIncrement: true,
     },
     saved_pet_ads_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        references: {
-          model: 'pet_ads',
-          key: 'id',
-        },
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'pet_ads',
+        key: 'id',
       },
+    },
     user_tag_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        references: {
-          model: 'user',
-          key: 'id',
-        },
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'user',
+        key: 'id',
       },
+    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "saved_pets_tag",
+    modelName: 'saved_pets_tag',
   }
 );
 
