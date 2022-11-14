@@ -1,8 +1,7 @@
 
 const updateUserInfo = async (event) => {
   event.preventDefault();
- 
-  // const userId =  document.querySelector('#user-id').textContent
+
 
   //input values
   const firstNameInput = document.querySelector('#first_name').value.trim();
@@ -11,30 +10,30 @@ const updateUserInfo = async (event) => {
   const addressInput = document.querySelector('#address').value.trim();
 
   if (firstNameInput || lastNameInput || emailInput || phoneNumberInput || addressInput || passwordInput) {
-  const response = await fetch(`/api/users/:id`, {
-    method: 'PUT',
-    body: JSON.stringify({
-      first_name: firstNameInput,
-      last_name: lastNameInput,
-      phone_number: phoneNumberInput,
-      address: addressInput
-    }),
-    headers: {
-      'Content-Type': 'application/json'
-    },
-  });
+    const response = await fetch('/api/users/:id', {
+      method: 'PUT',
+      body: JSON.stringify({
+        first_name: firstNameInput,
+        last_name: lastNameInput,
+        phone_number: phoneNumberInput,
+        address: addressInput
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
 
     if(response.ok) {
-      document.location.replace(`/profile`)
+      document.location.replace('/profile');
     } else {
-      alert("Something went wrong")
+      alert('Something went wrong');
     }
   }
 
 };
 
 const resetInfo = (event) => {
-  console.log('hi')
+  console.log('hi');
 
   event.preventDefault();
 
@@ -44,11 +43,11 @@ const resetInfo = (event) => {
   const phoneNumberEl = document.querySelector('#phone_number');
   const addressEl = document.querySelector('#address');
 
-  firstNameEl.value = "";
-  lastNameEl.value = "";
-  emailEl.value = "";
-  phoneNumberEl.value = "";
-  addressEl.value = "";
+  firstNameEl.value = '';
+  lastNameEl.value = '';
+  emailEl.value = '';
+  phoneNumberEl.value = '';
+  addressEl.value = '';
 
 };
 

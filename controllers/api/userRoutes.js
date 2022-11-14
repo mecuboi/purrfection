@@ -4,19 +4,19 @@ const withAuth = require('../../utils/auth');
 
 //get routes
 router.get('/', async (req, res) => {
-    try {
-        const userData = await User.findAll({
-          attributes: { exclude: ['password'] },
-          include: [
-            { model: PetAds, through: SavedPetsTag },
-          ]
-        });
+  try {
+    const userData = await User.findAll({
+      attributes: { exclude: ['password'] },
+      include: [
+        { model: PetAds, through: SavedPetsTag },
+      ]
+    });
 
-        const users = userData.map((user) => 
-        user.get({ plain: true })
-        );
-        
-            res.status(200).json(users)
+    const users = userData.map((user) =>
+      user.get({ plain: true })
+    );
+
+    res.status(200).json(users);
 
   } catch (err) {
     console.log(err);
@@ -31,9 +31,9 @@ router.get('/:id', withAuth, async (req, res) => {
       include: [
         { model: PetAds, through: SavedPetsTag },
       ]
-    })
+    });
 
-    res.status(200).json(userDataById)
+    res.status(200).json(userDataById);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -51,14 +51,13 @@ router.post('/', async (req, res) => {
       phone_number: req.body.phone_number,
       password: req.body.password,
       address: req.body.address,
-      // saved_petAds_id: req.body.saved_petAds_id 
     });
     req.session.save(() => {
       req.session.user_id = postUser.id;
       req.session.logged_in = true;
       res.status(200).json(postUser);
     });
-    console.log(req.session.logged_in);
+
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -75,25 +74,22 @@ router.put('/:id', withAuth, async (req, res) => {
       phone_number: req.body.phone_number,
       password: req.body.password,
       address: req.body.address,
-      // saved_petAds_id: req.body.saved_petAds_id 
     },
-      {
-        where: {
-          id: req.session.user_id 
-          // req.params.id,
-        },
-  });
+    {
+      where: {
+        id: req.session.user_id
+      },
+    });
 
     if (!updateUser) {
       return res.status(404).json({ message: 'No such user found!' });
     } else {
-      //TODO test
-      res.status(200).json(updateUser)
+      res.status(200).json(updateUser);
     }
   } catch (err) {
     res.status(500).json(err);
   }
-})
+});
 
 
 //Delete routes
@@ -109,13 +105,12 @@ router.delete('/:id', async (req, res) => {
     if (!deleteUser) {
       return res.status(404).json({ message: 'No such user found!' });
     } else {
-      //TODO test
-      res.status(200).json(deleteUser)
+      res.status(200).json(deleteUser);
     }
   } catch (err) {
     res.status(500).json(err);
   }
-})
+});
 
 router.post('/login', async (req, res) => {
   try {
@@ -133,7 +128,7 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
-    
+
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
