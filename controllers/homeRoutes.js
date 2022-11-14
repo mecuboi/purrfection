@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const nodemailer = require('nodemailer')
 const { PetAds, Category, User, SavedPetsTag } = require('../models');
 const withAuth = require('../utils/auth');
 
@@ -105,7 +106,7 @@ router.get('/petads/:id', withAuth, async (req, res) => {
     const sellerId = petAds.seller_id;
     var correctUser = false;
 
-    if(req.session.user_id == sellerId) {
+    if (req.session.user_id == sellerId) {
       correctUser = true
     };
 
@@ -144,6 +145,13 @@ router.get('/profile/:id', withAuth, async (req, res) => {
 
     const user = userData.get({ plain: true });
     const userPetAds = userPetAdData.map(data => data.get({ plain: true }));
+
+
+    var correctUser = false;
+
+    if (req.session.user_id == req.params.id) {
+      correctUser = true
+    };
 
     res.render('profile', {
       user,
@@ -236,6 +244,83 @@ router.get('/upload', (req, res) => {
     pet_ads_id: req.session.pet_id 
   });
 });
+
+
+router.get('/email/:seller_email', async (req, res) => {
+
+  const sendEmailTo = req.params.seller_email;
+
+
+  if (req.session.user_id) {
+    const userData = await User.findByPk(req.session.user_id)
+
+    const user = userData.get({ plain: true })
+
+    activeUser = user
+  }
+
+  res.render('email', {
+    activeUser,
+    sendEmailTo,
+    logged_in: req.session.logged_in
+  });
+});
+
+
+
+
+/* nodemailer
+ */
+router.post('/email/send', (req, res) => {
+  const output = `
+    <h1>You have received new interest</h1>
+    <hr>
+    <h3>Message</h3>
+    <p>${req.body.message}</p>
+    <p>If pet still available .Please respond<p>
+    <h3>Here are my contact Details</h3>
+    <ul>  
+      <li>Name: ${req.body.name}</li>
+      <li>Email: ${req.body.email}</li>
+      <li>Phone: ${req.body.phone}</li>
+    </ul>
+   </hr>
+<h3>Thanks and Regards</h3>
+  `;
+
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    service: "outlook",
+    auth: {
+      user: 'purrfection_pets@outlook.com', // generated ethereal user
+      pass: 'purrfection'  // generated ethereal password
+    },
+    tls: {
+      rejectUnauthorized: false
+    }
+  });
+
+  // setup email data with unicode symbols
+  let mailOptions = {
+    from: '"Purrfection " <purrfection_pets@outlook.com>', // sender address
+    to: `${req.body.receiver}`, // list of receivers
+    subject: 'Node Contact Request', // Subject line
+    text: 'Hello world?', // plain text body
+    html: output // html body
+  };
+
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Message sent: %s', info.messageId);
+    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+    res.render('email', { msg: 'Email has been sent' });
+  });
+});
+
 
 
 module.exports = router;

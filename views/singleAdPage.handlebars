@@ -3,7 +3,7 @@
     <img class="w-full" src="{{petAds.image}}">
     <br>
     <div class="mt-4 md:mt-0">
-      
+
       <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
         {{petAds.name}} ({{petAds.breed}}) 
         <button id="favourite-btn">
@@ -18,14 +18,23 @@
       <p><strong>Price:</strong> $ {{petAds.price}}</p>
       <br>
       <h3 class="mb-4 text-2xl tracking-tight font-extrabold text-gray-900 dark:text-white">Seller Details</h3>
-      <a href="/profile/{{petAds.user.id}}" class="text-orange-500 font-bold text-lg underline">{{petAds.user.first_name}} {{petAds.user.last_name}}</a>
-      <p>{{petAds.user.email}}</p>
+      <a href="/profile/{{petAds.user.id}}"
+        class="text-orange-500 font-bold text-lg underline">{{petAds.user.first_name}} {{petAds.user.last_name}}</a>
+      <p id="seller-email">{{petAds.user.email}}</p>
       <p>{{petAds.user.phone_number}}</p>
       <br>
-      <p class="mb-6 text-gray-500 text-sm">Ads Created: {{format_time petAds.date_created}} {{format_date petAds.date_created}}</p>
-    {{#if correctUser}}
-    <button type="button" id="delete-button" class="focus:outline-none text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2.5 mr-2 mb-2">Delete Ad</button>
-    {{/if}}
+      <p class="mb-6 text-gray-500 text-sm">Ads Created: {{format_time petAds.date_created}} {{format_date
+        petAds.date_created}}</p>
+      {{#if correctUser}}
+      <button type="button" id="delete-button"
+        class="focus:outline-none text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2.5 mr-2 mb-2">Delete
+        Ad</button>
+      {{else}}
+      <button type="button" id="send-email"
+        class="focus:outline-none text-white bg-orange-500 hover:bg-orange-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2.5 mr-2 mb-2">Send
+        an email</button>
+      {{/if}}
+
     </div>
   </div>
 </section>
@@ -45,4 +54,7 @@
 </div>
 </div>
 
+<script src="/js/singlead.js"></script>
+<script src="/js/email.js"></script>
 <script src="./js/singleAdPage.js"></script>
+

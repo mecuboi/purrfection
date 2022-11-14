@@ -6,7 +6,7 @@ const withAuth = require('../../utils/auth');
 router.get('/', async (req, res) => {
   try {
     const newPetAds = await PetAds.findAll({
-      include: {model: User}
+      include: { model: User }
     });
     
     req.session.save(() => {
@@ -36,12 +36,12 @@ router.post('/', withAuth, async (req, res) => {
 
 router.put('/:id', withAuth, async (req, res) => {
   try {
-    const petAds = await PetAds.update(...req.body,{
+    const petAds = await PetAds.update(...req.body, {
       where: {
         id: req.params.id,
         // user_id: req.session.user_id,
       },
-  
+
     });
 
     if (!petAds) {
